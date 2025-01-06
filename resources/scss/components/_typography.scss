@@ -1,0 +1,396 @@
+h1 {
+    font-family: $font-family-bold;
+    font-weight: 700 !important;
+    font-size: 63px !important;
+    color: #ffff;
+    line-height: 72px;
+    letter-spacing: -0.015em;
+    @include for_breakpoint(desktop) {
+        font-size: 44px !important;
+        line-height: 50px !important;
+        letter-spacing: -0.010em;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 40px !important;
+        line-height: 46px !important;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 36px !important;
+        line-height: 41px !important;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 28px !important;
+        line-height: 32px !important;
+        letter-spacing: -0.010em;
+    }
+
+    &.text-52 {
+        font-size: 52px !important;
+        line-height: 72px !important;
+        @include for_breakpoint(desktop) {
+            font-size: 38px !important;
+            line-height: 48px !important;
+        }
+        @include for_breakpoint(laptop) {
+            font-size: 32px !important;
+            line-height: 42px !important;
+        }
+        @include for_breakpoint(tablet) {
+            font-size: 30px !important;
+            line-height: 40px !important;
+        }
+        @include for_breakpoint(mobile) {
+            font-size: 16px !important;
+            line-height: 22px !important;
+        }
+    }
+
+    &.font-book-400{
+        font-family: $font-family-book;
+        font-weight: 400 !important;
+    }
+
+}
+
+h2 {
+    font-family: $font-family-book;
+    font-weight: 400;
+    font-size: 38px !important;
+    color: #ffff;
+    line-height: 48px;
+    // letter-spacing: -0.448px;
+
+    &.h2-medium {
+        font-size: 32px !important;
+        font-weight: 400 !important;
+        line-height: 40px !important;
+
+        @include for_breakpoint(tablet) {
+            font-size: 24px !important;
+            line-height: 32px;
+            font-weight: 700 !important;
+
+        }
+        @include for_breakpoint(mobile) {
+            font-size: 20px !important;
+            line-height: 20px;
+            font-weight: 700 !important;
+            // letter-spacing: -0.010em;
+        }
+    }
+
+    &.h2-small {
+        font-family: $font-family-bold !important;
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        line-height: 26.8px !important;
+    }
+
+    &.h2-xsmall {
+        font-family: $font-family-bold !important;
+        font-size: 26px !important;
+        font-weight: 700 !important;
+        line-height: 24.88px !important;
+    }
+
+    &.h2-2xsmall {
+        font-family: $font-family-bold !important;
+        font-size: 24px !important;
+        font-weight: 500 !important;
+        line-height: 36px !important;
+    }
+
+    @include for_breakpoint(desktop) {
+        font-size: 36px !important;
+        line-height: 46px;
+        // letter-spacing: -0.010em;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 34px !important;
+        line-height: 44px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 32px !important;
+        line-height: 42px;
+    }
+    @include for_breakpoint(mobile) {
+        font-family: $font-family-medium;
+        font-size: 16px !important;
+        line-height: 22px;
+        // letter-spacing: -0.010em;
+        font-weight: 500 !important;
+    }
+
+    &.lh-126 {
+        line-height: 126.316% !important;
+        @include for_breakpoint(mobile) {
+            line-height: 137.5% !important;
+        }
+    }
+
+}
+
+h3 {
+    font-family: $font-family-book !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    color: #ffff !important;
+    line-height: 30px !important;
+
+    @include for_breakpoint(desktop) {
+        font-size: 18px !important;
+        line-height: 28px !important;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 17px !important;
+        line-height: 27px !important;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 16px !important;
+        line-height: 26px !important;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 14px !important;
+        line-height: 20px !important;
+    }
+
+    &.lh-24 {
+        line-height: 24px !important;
+    }
+}
+
+
+h5 {
+    font-family: $font-family-book !important;
+    font-weight: 400 !important;
+    font-size: 32px !important;
+    color: #ffff;
+    line-height: 40px !important;
+    letter-spacing: -1.4%;
+
+    @include for_breakpoint(laptop) {
+        font-size: 28px !important;
+        line-height: 34px !important;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 26px !important;
+        line-height: 32px !important;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 22px !important;
+        line-height: 28px !important;
+        letter-spacing: -0.010em;
+    }
+
+    &.fs-32-next {
+        font-family: $font-family-book !important;
+        font-weight: 400 !important;
+        font-size: 32px !important;
+        color: #ffff;
+        line-height: 40px !important;
+        letter-spacing: -0.448px;
+
+        @include for_breakpoint(laptop) {
+            font-size: 28px !important;
+            line-height: 34px !important;
+        }
+        @include for_breakpoint(tablet) {
+            font-size: 26px !important;
+            line-height: 32px !important;
+        }
+        @include for_breakpoint(mobile) {
+            font-family: $font-family-bold !important;
+            font-size: 14px !important;
+            line-height: 24px !important;
+            font-weight: 700 !important;
+        }
+    }
+
+    &.v3-sticky {
+        font-size: 16px !important;
+    }
+
+}
+
+h6 {
+    font-family: $font-family-book !important;
+    font-weight: 400 !important;
+    font-size: 26px !important;
+    color: #ffff;
+    line-height: 32px !important;
+
+    @include for_breakpoint(laptop) {
+        font-size: 24px !important;
+        line-height: 30px !important;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 22px !important;
+        line-height: 29px !important;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 20px !important;
+        line-height: 26px !important;
+    }
+
+}
+
+
+p {
+    font-family: $font-family-book !important;
+    line-height: normal;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
+    // @include for_breakpoint(tablet) {
+    //     font-size: 14px;
+    //     line-height: 22px;
+    // }
+    // @include for_breakpoint(mobile) {
+    //     font-size: 14px;
+    //     line-height: 22px;
+    // }
+
+
+    &.font-medium{
+        font-family: $font-family-book !important;
+        font-weight: 400 !important;
+        @include for_breakpoint(mobile) {
+            font-family: $font-family-medium !important;
+            font-weight: 500 !important;
+        }
+    }
+
+}
+
+.fs-20 {
+    font-size: 20px;
+    line-height: 24px;
+    @include for_breakpoint(desktop) {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 17px;
+        line-height: 21px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 17px;
+        line-height: 21px;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    &.lh-30 {
+        line-height: 30px;
+        @include for_breakpoint(desktop) {
+            line-height: 24px;
+        }
+        @include for_breakpoint(laptop) {
+            line-height: 21px;
+        }
+        @include for_breakpoint(tablet) {
+            line-height: 21px;
+        }
+        @include for_breakpoint(mobile) {
+            line-height: 18px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+    }
+}
+
+.fs-18 {
+    font-size: 18px;
+    line-height: 100%;
+    @include for_breakpoint(desktop) {
+        font-size: 16px;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 15px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 14px;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 12px;
+    }
+}
+
+.fs-16 {
+    font-size: 16px !important;
+    line-height: 24px;
+    @include for_breakpoint(desktop) {
+        font-size: 14px !important;
+        line-height: 20px;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 13px !important;
+        line-height: 18px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 13px !important;
+        line-height: 17px;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 11px !important;
+        line-height: 15px;
+    }
+
+    &.lh-20 {
+        line-height: 20px;
+    }
+}
+
+.fs-14 {
+    font-size: 14px;
+    line-height: 20px;
+    @include for_breakpoint(mobile) {
+        font-size: 10px;
+        line-height: 20px;
+    }
+
+    &.lh-18 {
+        line-height: 18px;
+    }
+
+    &.lh-14 {
+        line-height: 14px;
+    }
+}
+
+.fs-card {
+    font-size: 16px !important;
+    line-height: 22px;
+    @include for_breakpoint(desktop) {
+        font-size: 15px !important;
+        line-height: 21px;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 14px !important;
+        line-height: 20px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 14px !important;
+        line-height: 20px;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 13px !important;
+        line-height: 18px;
+    }
+
+}
+
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-400 {
+    font-weight: 400 !important;
+}

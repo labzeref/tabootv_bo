@@ -1,0 +1,107 @@
+$black-color-10 : #101010;
+$primary-color: #ff3a44;
+
+:root {
+    --primary-gradient: linear-gradient(90deg, rgba(110, 2, 6, 0.77) 0%, rgba(55, 55, 55, 0.2) 142.56%);;
+    --primary-light-color: #ff3a44;
+    --primary-color: #ff3a44;
+    --primary-dark-color: #ab0013;
+    --primary-dark-85: #AB001385;
+    --secondary-color: #9f9f9f;
+    --accent-color: #807e81;
+    --dark-color: #101010;
+    --success-color: #0eda53;
+    --warning-color: #ffbd00;
+    --white-color: #FFFFFF;
+    --gray-color-26: #FFFFFF26;
+    --purple-d0: #69C9D0;
+    --dark-dc: #D5D5DC;
+    --dark-9d: #92929D;
+    --black-0b: #0A070B;
+    --black-4d: #4742424D;
+}
+
+
+@font-face {
+    font-family: "GothamBold";
+    src: url("/public/fonts/gotham-bold.woff") format("woff");
+}
+@font-face {
+    font-family: "GothamMedium";
+    src: url("/public/fonts/gotham-medium.woff") format("woff");
+}
+@font-face {
+    font-family: "GothamBook";
+    src: url("/public/fonts/GothamBook.woff") format("woff");
+}
+
+
+
+$font-family-bold: "GothamBold", sans-serif;
+$font-family-medium: "GothamMedium", sans-serif;
+$font-family-book: "GothamBook", sans-serif;
+
+.fm-bold{
+    font-family: $font-family-bold;
+}
+.fm-medium{
+    font-family: $font-family-medium;
+}
+.fm-book{
+    font-family: $font-family-book;
+}
+
+
+
+
+
+.text-dark-dc{
+    color: var(--dark-dc);
+}
+.text-secondary-9f{
+    color: var(--secondary-color);
+}
+.text-black-0b{
+    color: var(--black-0b);
+}
+.text-accent{
+    color: var(--accent-color);
+}
+
+
+
+/* Media Queries */
+
+$media_queries : (
+    'mobile'    : "only screen and (max-width: 600px)",
+    'tablet'    : "only screen and (min-width: 601px) and (max-width: 960px)",
+    'laptop'    : "only screen and (min-width: 961px) and (max-width: 1280px)",
+    'desktop'   : "only screen and (min-width: 1281px) and (max-width: 1620px)",
+    'tv'        : "only screen and (min-width: 1621px) and (max-width: 1940px)",
+    'lg-tv'        : "only screen and (min-width: 1941px)",
+    'retina2'   : "only screen and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi)",
+    'retina3'   : "only screen and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 288dpi)",
+    'landscape' : "screen and (orientation:landscape)",
+    'portrait'  : "screen and (orientation:portrait)",
+    // 'sm-laptop' : "only screen and (min-width: 1201px) and (max-width: 1305px)",
+    // 'md-laptop' : "only screen and (min-width: 1201px) and (max-width: 1405px)",
+    'sm-mobile' : "only screen and (min-width: 300px) and (max-width: 360px)",
+    'smm-tab'   : "only screen and (min-width: 670px) and (max-width: 769px)",
+
+);
+
+
+@mixin for_breakpoint($breakpoints...) {
+    @each $breakpoint in $breakpoints {
+        $media-query: map-get($media_queries, $breakpoint);
+
+        @if $media-query != null {
+            // Directly use the $media-query within each loop iteration
+            @media #{unquote($media-query)} {
+                @content;
+            }
+        } @else {
+            @warn "Breakpoint `#{$breakpoint}` does not exist in $media_queries.";
+        }
+    }
+}

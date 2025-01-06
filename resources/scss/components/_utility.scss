@@ -1,0 +1,498 @@
+.max-w-485 {
+    max-width: 485px;
+}
+
+.rounded-30 {
+    border-radius: 30px;
+    @include for_breakpoint(laptop) {
+        border-radius: 24px;
+    }
+    @include for_breakpoint(tablet) {
+        border-radius: 20px;
+    }
+    @include for_breakpoint(mobile) {
+        border-radius: 12px;
+    }
+}
+
+.h-300 {
+    height: 100%;
+    @include for_breakpoint(mobile) {
+        height: 213px;
+    }
+}
+
+.order-title {
+    order: 0;
+    @include for_breakpoint(mobile) {
+        order: -1;
+    }
+}
+
+// mt-1 md:mt-[20px]
+.mt--20 {
+    margin-top: 20px !important;
+    @include for_breakpoint(mobile) {
+        margin-top: 4px !important;
+    }
+}
+
+
+.sm-hidden {
+    display: block !important;
+    @include for_breakpoint(mobile) {
+        display: none !important;
+    }
+}
+
+.md-hidden {
+    display: none;
+    @include for_breakpoint(mobile) {
+        display: block;
+    }
+}
+
+.max-nav {
+    max-width: 610px;
+
+    @include for_breakpoint(desktop) {
+        max-width: 590px;
+    }
+    @include for_breakpoint(laptop) {
+        max-width: 550px;
+    }
+
+
+}
+
+
+.px-10px {
+    padding: 10px !important;
+}
+
+.p-chat-header {
+    padding: 12px 16px 12px 30px;
+}
+
+.px-30px {
+    padding-left: 30px;
+    padding-right: 20px;
+    @include for_breakpoint(desktop) {
+        padding-left: 24px;
+        padding-right: 14px;
+    }
+    @include for_breakpoint(laptop) {
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+    @include for_breakpoint(tablet) {
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+    @include for_breakpoint(mobile) {
+        padding-left: 16px;
+        padding-right: 6px;
+    }
+}
+
+
+.px-reply {
+    padding: 20px 30px;
+    @include for_breakpoint(desktop) {
+        padding: 16px 24px;
+    }
+    @include for_breakpoint(laptop) {
+        padding: 16px 22px;
+    }
+    @include for_breakpoint(tablet) {
+        padding: 16px 22px;
+    }
+    @include for_breakpoint(mobile) {
+        padding: 20px 13px;
+    }
+}
+
+
+.margin-bottom {
+    margin-bottom: 18px;
+    @include for_breakpoint(mobile) {
+        margin-bottom: 3px;
+    }
+}
+
+
+.mb-episode {
+    margin-bottom: 16px;
+    @include for_breakpoint(mobile) {
+        margin-bottom: 8px;
+    }
+}
+
+.title-mb {
+    margin-bottom: 4px;
+    @include for_breakpoint(mobile) {
+        margin-bottom: 0px;
+    }
+}
+
+
+.pl-21 {
+    padding-left: 21px !important;
+    @include for_breakpoint(desktop) {
+        padding-left: 12px !important;
+    }
+    @include for_breakpoint(laptop) {
+        padding-left: 12px !important;
+    }
+    @include for_breakpoint(mobile) {
+        padding-left: 12px !important;
+    }
+}
+
+.mt-25 {
+    margin-top: 25px !important;
+    @include for_breakpoint(desktop) {
+        margin-top: 22px !important;
+    }
+    @include for_breakpoint(laptop) {
+        margin-top: 20px !important;
+    }
+    @include for_breakpoint(tablet) {
+        margin-top: 18px !important;
+    }
+    @include for_breakpoint(mobile) {
+        margin-top: 16px !important;
+    }
+}
+
+
+.max-w-147px {
+    max-width: 147px;
+
+    @include for_breakpoint(laptop) {
+        max-width: 137px;
+    }
+    @include for_breakpoint(tablet) {
+        max-width: 117px;
+    }
+    @include for_breakpoint(mobile) {
+        max-width: 96px;
+    }
+}
+
+// py-2 px-[15px]
+.p-autoplay {
+    padding: 8px 15px;
+
+    @include for_breakpoint(mobile) {
+        padding: 6px 10px;
+    }
+}
+
+// text-[16px] font-bold rounded-[8px] md:rounded-[100px]
+
+.btn-banner {
+    width: 100%;
+    max-width: 289px;
+    min-width: 289px;
+    height: 63px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    border-radius: 100px !important;
+    border: 2px solid var(--primary-light-color) !important;
+    box-shadow: 0px 4px 23px 0px rgba(170, 4, 20, 0.65) !important;
+    @include for_breakpoint(desktop) {
+        max-width: 277px;
+        min-width: 277px;
+        height: 56px !important;
+    }
+    @include for_breakpoint(laptop) {
+        max-width: 270px;
+        min-width: 270px;
+        height: 56px !important;
+    }
+    @include for_breakpoint(tablet) {
+        max-width: 250px;
+        min-width: 250px;
+        height: 35px !important;
+    }
+    @include for_breakpoint(mobile) {
+        max-width: 277px;
+        min-width: 277px;
+        height: 35px !important;
+        font-size: 12px !important;
+        border-radius: 8px !important;
+    }
+    @include for_breakpoint(sm-mobile) {
+        max-width: 200px;
+        min-width: 200px;
+        height: 35px !important;
+        font-size: 12px !important;
+        border-radius: 8px !important;
+    }
+}
+
+
+.home-card-padding {
+    padding: 20px !important;
+    @include for_breakpoint(desktop) {
+        padding: 15px !important;
+    }
+    @include for_breakpoint(laptop) {
+        padding: 12px !important;
+    }
+    @include for_breakpoint(tablet) {
+        padding: 10px !important;
+    }
+    @include for_breakpoint(mobile) {
+        padding: 10px !important;
+    }
+}
+
+
+.max-home-series {
+    max-width: 400px;
+    @include for_breakpoint(desktop) {
+        max-width: 300px;
+    }
+    @include for_breakpoint(laptop) {
+        max-width: 300px;
+    }
+    @include for_breakpoint(tablet) {
+        max-width: 300px;
+    }
+    @include for_breakpoint(mobile) {
+        max-width: 213px;
+    }
+}
+
+
+.banner-slide-height {
+    min-height: 580px;
+    @include for_breakpoint(desktop) {
+        min-height: 560px;
+    }
+    @include for_breakpoint(laptop) {
+        min-height: 540px;
+    }
+    @include for_breakpoint(tablet) {
+        min-height: 620px;
+    }
+    @include for_breakpoint(mobile) {
+        min-height: 580px;
+    }
+}
+
+
+.image-slide-height {
+    height: 720px;
+    @include for_breakpoint(desktop) {
+        height: 560px;
+    }
+    @include for_breakpoint(laptop) {
+        height: 540px;
+    }
+    @include for_breakpoint(tablet) {
+        height: 500px;
+    }
+    @include for_breakpoint(mobile) {
+        height: 476px;
+    }
+}
+
+.mt--banner-content {
+    margin-top: 101px;
+    @include for_breakpoint(desktop) {
+        margin-top: 60px;
+    }
+    @include for_breakpoint(laptop) {
+        margin-top: 50px;
+    }
+    @include for_breakpoint(tablet) {
+        margin-top: 40px;
+    }
+    @include for_breakpoint(mobile) {
+        margin-top: 0px;
+    }
+}
+
+.stickyCard {
+
+    @include for_breakpoint(tablet) {
+        padding-block: 20px;
+        padding-inline: 25px;
+        border: 1px solid #FFFFFF1A !important;
+        border-radius: 20px;
+        background: linear-gradient(0deg, rgba(110, 2, 6, 0.77) 0%, rgba(55, 55, 55, 0.2) 100%);
+    }
+    @include for_breakpoint(mobile) {
+        padding-block: 20px;
+        padding-inline: 25px;
+        border: 1px solid #FFFFFF1A !important;
+        border-radius: 20px;
+        background: linear-gradient(0deg, rgba(110, 2, 6, 0.77) 0%, rgba(55, 55, 55, 0.2) 100%);
+    }
+}
+
+.top-banner-content {
+    @include for_breakpoint(tablet) {
+        top: 40% !important;
+        z-index: 99999;
+        position: relative;
+    }
+    @include for_breakpoint(mobile) {
+        top: 45% !important;
+    }
+}
+
+
+.mt--91 {
+    margin-top: 91px;
+    @include for_breakpoint(desktop) {
+        margin-top: 60px;
+    }
+    @include for_breakpoint(laptop) {
+        margin-top: 50px;
+    }
+    @include for_breakpoint(tablet) {
+        margin-top: 40px;
+    }
+    @include for_breakpoint(mobile) {
+        margin-top: 25px;
+    }
+}
+
+
+// grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-3 md:gap-[25px]
+
+.grid-all-videos {
+    display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-template-columns: repeat(auto-fit, minmax(458px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 25px;
+    row-gap: 25px;
+
+    @include for_breakpoint(mobile) {
+        grid-template-columns: 1fr;
+        column-gap: 12px;
+        row-gap: 12px;
+    }
+
+    @include for_breakpoint(tablet) {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 12px;
+        row-gap: 12px;
+    }
+
+    @include for_breakpoint(laptop) {
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 14px;
+        row-gap: 14px;
+    }
+
+    @include for_breakpoint(desktop) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        column-gap: 16px;
+        row-gap: 16px;
+    }
+
+    // gap-2 md:gap-y-[46px] md:gap-x-[25px]
+    &.series-gap {
+        column-gap: 25px;
+        row-gap: 46px;
+        @include for_breakpoint(mobile) {
+            column-gap: 12px;
+            row-gap: 12px;
+        }
+        @include for_breakpoint(tablet) {
+            column-gap: 16px;
+            row-gap: 40px;
+        }
+        @include for_breakpoint(laptop) {
+            column-gap: 14px;
+            row-gap: 40px;
+        }
+        @include for_breakpoint(desktop) {
+            column-gap: 16px;
+            row-gap: 40px;
+        }
+    }
+
+
+}
+
+
+.infinity-logo {
+    filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(108deg) brightness(102%) contrast(101%);
+    height: 34px;
+}
+
+//   max-w-[400px] object-cover md:rounded-[20px]
+.height-video-short {
+    max-height: 1920px !important;
+    // height: 100%;
+    height: initial;
+    border-radius: 16px;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+
+}
+
+
+.logout-profile-link {
+    font-size: 18px;
+    top: 18px;
+    right: 20px;
+    color: #39C9D0;
+    @include for_breakpoint(desktop) {
+        font-size: 16px;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 16px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 16px;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 14px;
+        top: 10px;
+    }
+
+}
+
+
+.short-video-navigation-btn {
+    display: flex;
+    @include for_breakpoint(mobile) {
+        display: none;
+    }
+}
+
+//   max-w-[374px] md:max-w-[569px]
+.max-w-shorts {
+    max-width: 569px;
+    width: 100%;
+    @include for_breakpoint(mobile) {
+        max-width: fit-content;
+    }
+    @include for_breakpoint(tablet) {
+        max-width: 520px;
+    }
+    @include for_breakpoint(laptop) {
+        max-width: 400px;
+    }
+    @include for_breakpoint(desktop) {
+        max-width: 470px;
+    }
+}
+
+.max-title {
+    max-width: auto;
+    @include for_breakpoint(mobile) {
+        max-width: 230px;
+    }
+    @include for_breakpoint(laptop) {
+        max-width: 320px;
+    }
+}

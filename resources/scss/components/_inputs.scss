@@ -1,0 +1,199 @@
+.theme__input {
+    input {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 10%);
+        border-radius: 12px;
+        padding-block: 12px;
+        padding-inline: 16px;
+
+        &:focus {
+            outline: none;
+            border-color: white;
+            box-shadow: none
+        }
+    }
+
+    .v-messages__message {
+        color: var(--primary-color);
+    }
+}
+
+.theme__select {
+    width: 100%;
+    padding: 0;
+
+    input {
+        inset: 0;
+        width: 100%;
+        border: none;
+    }
+
+    i {
+        bottom: 7px;
+        right: 5px;
+    }
+
+    .v-field__overlay {
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 10%);
+        background-color: transparent !important;
+    }
+
+    .v-field__input {
+        padding: 0 15px 0 15px;
+        word-spacing: 5px;
+    }
+}
+
+.theme__autocomplete {
+    width: 100%;
+    padding: 0;
+
+    input {
+        inset: 0;
+        width: 100%;
+        border: none;
+    }
+
+    i {
+        bottom: 7px;
+        right: 5px;
+    }
+
+    .v-field__overlay {
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 10%);
+        background-color: transparent !important;
+    }
+
+    .v-field__input {
+        padding: 0 15px 0 15px;
+        word-spacing: 5px;
+    }
+}
+
+.theme__combobox {
+    width: 100%;
+    padding: 0;
+
+    input {
+        inset: 0;
+        width: 100%;
+        border: none;
+    }
+
+    i {
+        bottom: 7px;
+        right: 5px;
+    }
+
+    .v-field__overlay {
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 10%);
+        background-color: transparent !important;
+    }
+
+    .v-field__input {
+        padding: 0 15px 0 15px;
+        word-spacing: 5px;
+    }
+}
+
+//twilio input
+.vue-tel-input {
+    background-color: transparent !important;
+    box-shadow: none;
+
+    &:focus {
+        border: 1px solid white;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .vti__input {
+        background-color: transparent;
+        color: white;
+        width: 100%;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.vti__dropdown {
+    &:hover {
+        background-color: transparent;
+    }
+
+    &:focus {
+        background-color: transparent;
+    }
+
+    ul {
+        background-color: var(--dark-color);
+        border-radius: 15px;
+        padding: 5px;
+        backdrop-filter: blur(15px);
+        color: white;
+        border-color: black;
+
+        li {
+            padding: 5px;
+            border-radius: 6px;
+            background-color: transparent !important;
+
+            &:hover {
+                background: linear-gradient(90deg, rgba(110, 2, 6, 0.77) 0%, rgba(55, 55, 55, 0.2) 142.56%);
+            }
+
+            &:focus {
+                background: linear-gradient(90deg, rgba(110, 2, 6, 0.77) 0%, rgba(55, 55, 55, 0.2) 142.56%);
+            }
+        }
+    }
+}
+
+.vue-tel-input:focus-within {
+    box-shadow: none;
+    border-color: white;
+}
+
+
+.v-field--variant-filled:hover {
+
+}
+
+.theme__file {
+    label {
+        color: red;
+    }
+
+    input {
+    }
+
+    .v-field__overlay {
+        &:hover {
+        }
+    }
+
+    .v-field__outline {
+        display: none;
+
+        &:hover {
+            background-color: #fff;
+        }
+    }
+
+    label {
+
+    }
+}
+
+.theme__list-item {
+    padding: 6px 16px !important;
+    &:hover {
+        background: linear-gradient(90deg, rgba(110, 2, 6, 0.77) 0%, rgba(55, 55, 55, 0.2) 142.56%);
+        color: white !important;
+    }
+}

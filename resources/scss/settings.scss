@@ -1,0 +1,8 @@
+@use 'vuetify/settings';
+
+.v-toolbar__content {
+    overflow-y: visible;
+}
+.v-btn{
+    text-transform: none
+}

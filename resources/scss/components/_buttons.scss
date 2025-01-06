@@ -1,0 +1,58 @@
+.btn{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 8px 26px !important;
+    gap: 10px !important;
+    text-align: center !important;
+    transition: all 0.5s ease !important;
+    cursor: pointer;
+    font-family: $font-family-bold;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    outline: none !important;
+    border-radius: 100px;
+    height: 63px;
+
+    @include for_breakpoint(desktop) {
+        font-size: 15px;
+        line-height: 21px;
+        height: 56px;
+    }
+    @include for_breakpoint(laptop) {
+        font-size: 14px;
+        line-height: 20px;
+        height: 50px;
+    }
+    @include for_breakpoint(tablet) {
+        font-size: 14px;
+        line-height: 20px;
+        height: 46px;
+    }
+    @include for_breakpoint(mobile) {
+        font-size: 13px;
+        line-height: 19px;
+        height: 40px;
+    }
+
+
+
+
+
+    &.btn-primary{
+        background: var(--primary-dark-color);
+        color: var(--white-color);
+        border: 1px solid #EF595C;
+        position: relative;
+        &:hover,&:active{
+            background: transparent;
+             border: 1px solid #EF595C;
+            color: var(--white-color);
+        }
+
+
+    }
+}
