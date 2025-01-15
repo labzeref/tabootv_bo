@@ -18,7 +18,7 @@ class Report
     public function rules(): array
     {
         return [
-            'reportable_type' => ['required', Rule::in(['comment', 'message', 'video', 'series', 'user'])],
+            'reportable_type' => ['required', Rule::in(['post','comment','post-comment', 'message', 'video', 'series', 'user'])],
             'reportable_id' => 'required|integer',
             'message' => 'required|string|max:2000',
         ];

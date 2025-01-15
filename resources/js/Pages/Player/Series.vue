@@ -59,6 +59,7 @@ const toggleDislike = () => {
         }
     })
 }
+console.log('currentVideo', currentVideo)
 
 </script>
 

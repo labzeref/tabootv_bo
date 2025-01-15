@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -35,18 +36,43 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validate the request
         $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'token' => ['required'], // Validate that a token is provided
+            'password' => ['required', 'string', 'min:8', 'confirmed'], // Validate the password
         ]);
+
 
         // Normalize the email input to lowercase
         $normalizedEmail = strtolower($request->email);
 
         // Retrieve the user using a case-insensitive email search
+        $passwordReset = DB::table('password_reset_tokens')->whereRaw('LOWER(email) = ?', [$normalizedEmail])
+            ->orderBy('created_at','desc')->first();
+
+        if (!$passwordReset) {
+            throw ValidationException::withMessages([
+                'password' => ['The password reset token is invalid.'],
+            ]);
+        }
+
+        if (!$passwordReset || !Hash::check($request->token, $passwordReset->token)) {
+            throw ValidationException::withMessages([
+                'password' => ['The password reset token is invalid or expired'],
+            ]);
+        }
+
+        // Optionally, check token expiration (e.g., 60 minutes)
+        if (now()->subMinutes(60)->greaterThan($passwordReset->created_at)) {
+            throw ValidationException::withMessages([
+                'token' => ['The password reset token has expired.'],
+            ]);
+        }
+
+        // Retrieve the user using a case-insensitive email search
         $user = User::whereRaw('LOWER(email) = ?', [$normalizedEmail])
             ->orderBy('id','desc')->first();
+
 
         if (! $user) {
             throw ValidationException::withMessages([
@@ -54,32 +80,17 @@ class NewPasswordController extends Controller
             ]);
         }
 
-        // Attempt to reset the user's password
-        $status = Password::reset(
-            [
-                'email' => $user->email, // Use the matched user's email
-                'password' => $request->password,
-                'password_confirmation' => $request->password_confirmation,
-                'token' => $request->token,
-            ],
-            function ($user) use ($request) {
-                $user->forceFill([
-                    'password' => Hash::make($request->password),
-                    'remember_token' => Str::random(60),
-                ])->save();
+        // Reset the user's password
+        $user->forceFill([
+            'password' => Hash::make($request->password),
+            'remember_token' => Str::random(60),
+        ])->save();
 
-                event(new PasswordReset($user));
-            }
-        );
+        // Delete the password reset token after successful reset
+        DB::table('password_reset_tokens')->where('token', $request->token)->delete();
 
-        // Redirect or handle errors
-        if ($status == Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('status', __($status));
-        }
+        return redirect()->route('login')->with('status', __('Your password has been reset successfully.'));
 
-        throw ValidationException::withMessages([
-            'email' => [trans($status)],
-        ]);
     }
 
 }

@@ -2,6 +2,19 @@
 
 use App\Actions\Comment\PostVideoComment;
 use App\Actions\Comment\VideoCommentsList;
+use App\Actions\Community\CreatorFollowToggle;
+use App\Actions\Community\CreatorList;
+use App\Actions\Community\CreatorShow;
+use App\Actions\Community\PostCommentDislikeToggle;
+use App\Actions\Community\PostCommentLikeToggle;
+use App\Actions\Community\PostCommentList;
+use App\Actions\Community\PostCommentRepliesList;
+use App\Actions\Community\PostDislike;
+use App\Actions\Community\PostLikeAction;
+use App\Actions\Community\PostList;
+use App\Actions\Community\PostSingle;
+use App\Actions\Community\PostStore;
+use App\Actions\Community\StorePostComment;
 use App\Actions\Profile\DeleteAccount;
 use App\Actions\Profile\ShowProfile;
 use App\Actions\Profile\UpdateContact;
@@ -10,6 +23,10 @@ use App\Actions\Profile\UpdateEmail;
 use App\Actions\Profile\UpdatePassword;
 use App\Actions\Profile\UpdateProfile;
 use App\Actions\Search\GlobalSearch;
+use App\Actions\User\UserPostsList;
+use App\Actions\User\UserSeriesList;
+use App\Actions\User\UserShortList;
+use App\Actions\User\UserVideoList;
 use App\Http\Controllers\Api\ApiSeriesController;
 use App\Http\Controllers\Api\ApiVideoController;
 use App\Http\Controllers\Api\Auth\ApiLoginController;
@@ -95,6 +112,34 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/list/', \App\Actions\Notification\NotificationList::class);
             Route::post('/read-all', \App\Actions\Notification\ReadAllNotifications::class);
             Route::delete('/{notification}', \App\Actions\Notification\DestroyNotification::class);
+        });
+
+        Route::prefix('/posts')->group(function () {
+            Route::get('/{post?}', PostList::class);
+            Route::post('/', PostStore::class);
+            Route::get('{post}', PostSingle::class);
+            Route::post('{post}/dislike', PostDislike::class);
+            Route::post('{post}/like', PostLikeAction::class);
+
+        });
+
+
+        Route::prefix('/post-comments')->group(function () {
+            Route::get('/posts/{post}', PostCommentList::class);
+            Route::post('/posts/{post}', StorePostComment::class);
+            Route::post('/{postComment}/dislike-toggle', PostCommentDislikeToggle::class);
+            Route::post('/{postComment}/like-toggle', PostCommentLikeToggle::class);
+            Route::get('/{postComment}/replies', PostCommentRepliesList::class);
+        });
+
+        Route::prefix('/creators')->name('creators.')->group(function () {
+            Route::get('/', CreatorList::class);
+            Route::post('/{channel}/follow-toggle', CreatorFollowToggle::class);
+            Route::get('/{channel}', CreatorShow::class);
+            Route::get('creator-videos/{channel}', UserVideoList::class);
+            Route::get('creator-shorts/{channel}', UserShortList::class);
+            Route::get('creator-series/{channel}', UserSeriesList::class);
+            Route::get('creator-posts/{channel}', UserPostsList::class);
         });
 
         Route::post('/report', \App\Actions\Report::class);

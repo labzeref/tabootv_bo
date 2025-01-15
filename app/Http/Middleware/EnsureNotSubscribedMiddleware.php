@@ -9,6 +9,7 @@ class EnsureNotSubscribedMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
+
         if ($request->user()->subscribed()) {
             return redirect()->route('home');
         }

@@ -57,7 +57,7 @@ updateSlidesPerView();
 
                     <Link :href="route('shorts.page', video.uuid)">
                         <div class="relative">
-                            <img :src="video.thumbnail" alt="placeholder shorts image"
+                            <img :src="video.card_thumbnail" alt="placeholder shorts image"
                                  class="w-full h-[265px] md:h-[305px]">
                             <div class="absolute z-20 left-[10px] bottom-[6px]">
                                 <p class="font-medium text-[20px] truncated-heading-2 pr-2" style="line-height: 30px !important">{{ video.title }}</p>

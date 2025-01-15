@@ -41,7 +41,7 @@ class HandlePaymentChargeBackJob implements ShouldQueue
             throw new \Exception('Plan not found');
         }
 
-         $subscription = $user->subscriptions()->active()->where('plan_id', $plan->id)->first();
+         $subscription = $user->subscriptions()->active()->where('plan_id', $plan->id)->where('copecart_order_id', $this->data['order_id'])->latest('id')->first();
 
         if (!$subscription) {
             Log::channel('copecart')->info('Subscription not found', ['data' => $this->data]);

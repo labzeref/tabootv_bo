@@ -419,7 +419,54 @@
         }
     }
 
+}
 
+.grid-community {
+    display: grid;
+    grid-template-columns: 3fr 9fr; /* 4 + 8 column split */
+    column-gap: 35px;
+    row-gap: 25px;
+    margin-top: 16px;
+
+    @include for_breakpoint(mobile) {
+        grid-template-columns: auto;
+        column-gap: 16px;
+    }
+    @include for_breakpoint(tablet) {
+        grid-template-columns: auto;
+        column-gap: 16px;
+        margin-top: 12px;
+    }
+    @include for_breakpoint(laptop) {
+        column-gap: 16px;
+        margin-top: 12px;
+    }
+    @include for_breakpoint(desktop) {
+        column-gap: 20px;
+    }
+}
+.grid-creators {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+
+    @include for_breakpoint(mobile) {
+        grid-template-columns: auto;
+        column-gap: 16px;
+    }
+    @include for_breakpoint(tablet) {
+        grid-template-columns: auto;
+        column-gap: 16px;
+    }
+    @include for_breakpoint(laptop) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+    }
+    @include for_breakpoint(desktop) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 
@@ -494,5 +541,19 @@
     }
     @include for_breakpoint(laptop) {
         max-width: 320px;
+    }
+}
+
+
+.mb--32{
+    margin-bottom: 32px;
+    @include for_breakpoint(mobile) {
+        margin-bottom: 4px;
+    }
+    @include for_breakpoint(laptop) {
+        margin-bottom: 10px;
+    }
+    @include for_breakpoint(desktop) {
+        margin-bottom: 18px;
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\PostComment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,5 +19,6 @@ class CommentsTableSeeder extends Seeder
             'video_id' => 1, // Assuming a video with ID 1 exists
             'content' => 'This is a sample comment.',
         ]);
+
     }
 }

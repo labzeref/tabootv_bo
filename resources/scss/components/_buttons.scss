@@ -38,6 +38,15 @@
         height: 40px;
     }
 
+    &.btn-sm{
+        padding: 9px 19px !important;
+        border-radius: 20px;
+        height: 36px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 128%;
+    }
+
 
 
 
@@ -52,7 +61,7 @@
              border: 1px solid #EF595C;
             color: var(--white-color);
         }
-
-
     }
+
+
 }

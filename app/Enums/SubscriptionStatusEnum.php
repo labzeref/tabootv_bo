@@ -8,6 +8,8 @@ enum SubscriptionStatusEnum: string
     case canceled = 'canceled';
     case expired = 'expired';
     case trial = 'trial';
+    case trialExpired = 'trial expired';
     case refund = 'refund';
     case chargeback = 'chargeback';
+    case paymentFailed = 'payment failed';
 }

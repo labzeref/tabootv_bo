@@ -51,6 +51,12 @@ const NavLinks = [
         url: route('videos'),
         active: route().current('videos')
     },
+    {
+        label: 'Community',
+        icon: community,
+        url: route('community'),
+        active: route().current('community')
+    },
 ];
 
 let menu = [
@@ -71,7 +77,7 @@ let menu = [
     },
 ]
 
-if (!usePage().props.auth.apple_user){
+if (!usePage().props.auth.apple_user) {
     menu = [
         {
             icon: Settings,
@@ -167,7 +173,7 @@ const toggleSideNav = () => {
                         </template>
 
                         <v-list class="px-2 border min-w-[170px] rounded-lg mt-6">
-                            <div  v-for="(link, key) in menu" :key>
+                            <div v-for="(link, key) in menu" :key>
 
                                 <Link v-if="link.outside === false" :href="link.url" :method="link.method">
                                     <v-list-item

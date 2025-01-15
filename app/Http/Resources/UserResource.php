@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'profile_completed' => $this->profile_completed,
             'video_autoplay' => $this->video_autoplay,
             'badge' => $this->getBadge(),
+            'channel' => new ChannelResource($this->whenLoaded('channel')),
 
             $this->mergeWhen(
                 $this->relationLoaded('media'),

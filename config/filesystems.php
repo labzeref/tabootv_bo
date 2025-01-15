@@ -30,6 +30,14 @@ return [
 
     'disks' => [
 
+        'app' => [
+            'driver' => 'local',
+            'root' => storage_path('app'),
+            'serve' => true,
+            'throw' => false,
+        ],
+
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),

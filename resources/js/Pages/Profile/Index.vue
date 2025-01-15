@@ -6,6 +6,8 @@ import {ref} from 'vue';
 import {useForm, usePage} from "@inertiajs/vue3";
 import axios from "axios";
 import CardSvg from "@/Components/svg/icons/cardSvg.vue";
+import Slim from "@/plugins/SlimCroper/slim.vue";
+
 
 
 const Page = defineAsyncComponent(() => import('@/Components/Page.vue'))
@@ -15,18 +17,6 @@ const LinkInput = defineAsyncComponent(() => import('@/Components/LinkInput.vue'
 
 const user = computed(() => usePage().props.auth.user);
 
-const dpForm = useForm({
-    dp: null,
-})
-
-const handleDpChange = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-        dpForm.dp = file;
-
-        dpForm.post(route('profile.update-dp'));
-    }
-};
 
 
 const countries = ref([]);
@@ -69,6 +59,53 @@ const validateNumericInput = (event) => {
 }
 
 
+const dpForm = useForm({
+    dp: null,
+})
+
+const handleDpChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+        dpForm.dp = file;
+
+        dpForm.post(route('profile.update-dp'));
+    }
+};
+
+const slimService = (files, progress, success, failure, slim) => {
+    dpForm.dp = files[0];
+
+    dpForm.post(route('profile.update-dp'), {
+        onFinish: () => {
+            progress(100);
+            dpForm.reset();
+        },
+        preserveState: false,
+    });
+}
+
+const slimCropperOptions = {
+    ratio: '1:1',
+    service: slimService,
+    serviceFormat: 'file',
+    rotateButton: false,
+    remove: false,
+    push: false,
+    instantEdit: true,
+    label: '',
+    // didTransform: (service, done) => {
+    //     console.log(service, done, 'didTransform')
+    //     if (service) {
+    //         dpForm.dp = service.output.image;
+    //
+    //         dpForm.post(route('profile.update-dp'), {
+    //             preserveState: false,
+    //         });
+    //     }
+    // }
+}
+
+
 onMounted(() => {
     fetchGenders();
     fetchCountries();
@@ -87,13 +124,13 @@ onMounted(() => {
             <div class="w-full mx-auto max-w-[1027px]">
                 <h2 class="h2-2xsmall">Profile</h2>
 
-                <div class="flex items-center gap-5 my-6">
+<!--                <div class="flex items-center gap-5 my-6">
                     <img :src="user.medium_dp" alt="placeholder" class="size-[116px] rounded-full">
                     <label for="dp" class="text-primary text-[14px] cursor-pointer font-normal leading-[24px] fm-book">
                         <span>Change photo</span> <br>
                         <small>Max image size should be 5MB</small>
                     </label>
-                    <!-- Hidden file input -->
+                    &lt;!&ndash; Hidden file input &ndash;&gt;
                     <input
                         id="dp"
                         accept="image/*"
@@ -101,7 +138,14 @@ onMounted(() => {
                         @change="handleDpChange"
                         style="display: none"
                     />
-                </div>
+                </div>-->
+
+                <Slim
+                    :style="`background-size: cover; background-image: url(${user.medium_dp})`"
+                    class="flex items-center gap-5 my-6 w-[104px] h-[104px] rounded-full cursor-pointer"
+                    :options="slimCropperOptions"
+                />
+                <img v-if="user.badge" class="absolute -bottom-1 -right-1 w-11 h-11" :src="user.badge.image" alt=""/>
 
                 <form @submit.prevent="handleSubmit" action="">
                     <div class="w-full flex flex-col md:flex-row items-start lg:gap-x-[57px] gap-5">

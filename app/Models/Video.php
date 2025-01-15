@@ -188,4 +188,8 @@ class Video extends Model implements HasMedia
     {
         return $this->belongsToMany(User::class, 'video_likes', 'video_id', 'user_id');
     }
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
 }
