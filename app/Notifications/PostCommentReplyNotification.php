@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Enums\NotificationTypeEnum;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Bus\Queueable;
@@ -14,7 +15,7 @@ use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
 
 
-class CommentReplyNotification extends Notification
+class PostCommentReplyNotification extends Notification
 {
     use Queueable;
 
@@ -23,7 +24,7 @@ class CommentReplyNotification extends Notification
      */
     public function __construct(
         public readonly User $replier,
-        public Video $video,
+        public Post $post,
     )
     {
     }
@@ -57,26 +58,18 @@ class CommentReplyNotification extends Notification
     public function toArray(object $notifiable): array
     {
 
-        $route_type = 'general_video';
-        $route = route('videos.play', $this->video->uuid);
-        if ($this->video->short){
-            $route_type = 'short_video';
-            $route = route('shorts.page', $this->video->uuid);
-        }
-        if  ($this->video->series_id){
-            $route_type = 'series_video';
-            $route = route('series.video', $this->video->uuid);
 
-        }
+            $route = route('posts.index').'?post_id='.$this->post->id;
+
         $name = $this->replier->display_name ?: $this->replier->first_name;
 
-        $this->sendFirebaseNotification($notifiable, $name,$this->video->uuid,$route_type);
+        $this->sendFirebaseNotification($notifiable, $name,$this->post->id, 'post');
 
         return [
             'type' => NotificationTypeEnum::commentReply->value,
             'image_path' => null,
-            'model_uuid' => $this->video->uuid,
-            'model_type' => $route_type,
+            'model_uuid' => $this->post->id,
+            'model_type' => 'post',
             'route' => $route,
             'message' => "*{$name}* has replied to your comment",
         ];
@@ -95,7 +88,7 @@ class CommentReplyNotification extends Notification
             $message = CloudMessage::withTarget('token', $deviceToken->value)
                 ->withNotification(FirebaseNotification::create('tabootv', "*$name* has replied to your comment"))
                 ->withData([
-                    'type' => NotificationTypeEnum::commentReply->value,
+                    'type' => NotificationTypeEnum::communityCommentReply->value,
                     'model_uuid' => $model_uuid,
                     'model_type' => $model_type,
                 ]);

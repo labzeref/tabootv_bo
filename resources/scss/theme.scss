@@ -391,7 +391,7 @@ body {
 }
 
 
-.sm--hidden{
+.sm--hidden {
     display: block;
 
     @include for_breakpoint(tablet) {
@@ -401,7 +401,8 @@ body {
         display: none;
     }
 }
-.lg--hidden{
+
+.lg--hidden {
     display: none;
     @include for_breakpoint(tablet) {
         display: block;
@@ -411,23 +412,23 @@ body {
     }
 }
 
-.mobile--hidden{
+.mobile--hidden {
     display: block;
     @include for_breakpoint(mobile) {
         display: none;
     }
 }
-.tab-devices-hidden{
+
+.tab-devices-hidden {
     display: none;
     @include for_breakpoint(mobile) {
         display: block;
     }
 }
-
 
 
 // mb-[8px] md:mb-11
-.series-btn-custom{
+.series-btn-custom {
     width: 100%;
     margin-top: 44px;
     @include for_breakpoint(tablet) {
@@ -443,7 +444,7 @@ body {
 }
 
 
-.sm-order-1{
+.sm-order-1 {
     order: 0;
     margin-top: 25px;
     margin-bottom: 25px;
@@ -467,7 +468,7 @@ body {
 }
 
 
-.profile-order{
+.profile-order {
     margin-bottom: 23px;
     @include for_breakpoint(mobile) {
         order: 0;
@@ -477,7 +478,7 @@ body {
 }
 
 
-.height-custom-comment{
+.height-custom-comment {
     height: auto;
 
     @include for_breakpoint(mobile) {
@@ -494,7 +495,7 @@ body {
 }
 
 
-.replies-h{
+.replies-h {
     height: auto;
     @include for_breakpoint(mobile) {
         height: 52px;
@@ -502,7 +503,7 @@ body {
 
 }
 
-.gap-search{
+.gap-search {
     column-gap: 25px;
     row-gap: 30px;
 
@@ -513,19 +514,40 @@ body {
 }
 
 
-.mt--text{
+.mt--text {
     @include for_breakpoint(mobile) {
         margin-top: -.6rem;
     }
 }
- .custom-community-scroll::-webkit-scrollbar {
-    width: 0px !important;
-  }
-  .custom-community-scroll::-webkit-scrollbar-track {
-    width: 0px !important;
-  }
 
-.left-div-community{
+.forward-perv-btn{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+
+    .max-forword-btn{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    @include for_breakpoint(mobile) {
+        max-width: 230px;
+    }
+}
+
+.custom-community-scroll::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+.custom-community-scroll::-webkit-scrollbar-track {
+    width: 0px !important;
+}
+
+.left-div-community {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.10);
     background: var(--card, rgba(57, 53, 53, 0.63));
@@ -550,18 +572,18 @@ body {
         top: 0;
     }
 
-    .left-tabs{
+    .left-tabs {
         display: flex;
         align-items: center;
         column-gap: 12px;
         color: #807E81;
         padding: 16px;
         transition: all 0.5s ease !important;
-        border-radius:10px;
+        border-radius: 10px;
         width: 100%;
         cursor: pointer;
 
-        &:hover,&.active{
+        &:hover, &.active {
             box-shadow: 0px 0px 0px 0px #00000008;
             box-shadow: 0px 1px 2px 0px #00000008;
             box-shadow: 0px 3px 3px 0px #00000008;
@@ -574,7 +596,7 @@ body {
 
 }
 
-.right-div-community{
+.right-div-community {
     backdrop-filter: blur(30px);
     border: 1px solid #FFFFFF1A;
     background: #393535A1;
@@ -583,17 +605,17 @@ body {
     margin-bottom: 25px;
     overflow: auto;
 
-    &:last-child{
+    &:last-child {
         margin-bottom: 0px;
     }
 
 
-    .comment-div{
+    .comment-div {
         display: flex;
         align-items: start;
         column-gap: 12px;
 
-        .profile-comment-img{
+        .profile-comment-img {
             max-width: 48px;
             width: 48px;
             max-height: 48px;
@@ -605,7 +627,7 @@ body {
 }
 
 
-.taboo-permium-off-div{
+.taboo-permium-off-div {
     border-radius: 16px;
     border: 1px solid #AB0013;
     background-image: url(../js/assets/community-left-bg.png);
@@ -615,17 +637,17 @@ body {
 }
 
 
-.border-post{
+.border-post {
     border: 1px solid #AB0013;
     border-radius: 8px;
     padding: 10px;
 }
 
-.creator-card-bg{
+.creator-card-bg {
     border-radius: 15px;
     background: rgba(57, 53, 53, 0.63);
 
-    .card-content{
+    .card-content {
         display: flex;
         column-gap: 16px;
         padding: 12px 6px 19px 19px;
@@ -633,14 +655,15 @@ body {
             padding: 15px;
         }
     }
-    .creator-card-img{
+
+    .creator-card-img {
         width: 100%;
         height: 100px;
         object-fit: cover;
         border-radius: 15px 15px 0px 0px;
     }
 
-    .creator-profile-img{
+    .creator-profile-img {
         width: 84.474px;
         height: 88px;
         flex-shrink: 0;
@@ -669,7 +692,7 @@ body {
 }
 
 
-.play-pause-next-perv{
+.play-pause-next-perv {
     height: 60px;
     width: 60px;
     @include for_breakpoint(desktop) {
@@ -690,17 +713,17 @@ body {
     }
 }
 
-.creator-profile-card-bg{
+.creator-profile-card-bg {
     border-radius: 15px;
     background: #393535A1;
 
-    .creator-profile-card-img{
+    .creator-profile-card-img {
         width: 100%;
         height: 260px;
         border-radius: 15px 15px 0px 0px;
     }
 
-    .creator-profile-main-img{
+    .creator-profile-main-img {
         width: 163.99px;
         height: 170px;
         border-radius: 50%;
@@ -722,7 +745,8 @@ body {
             height: 154px;
         }
     }
-    .card-content{
+
+    .card-content {
         display: flex;
         column-gap: 16px;
         align-items: center;
@@ -737,7 +761,7 @@ body {
     }
 
     // ----------TAB-------
-    .creator-profile-tabs{
+    .creator-profile-tabs {
         height: 71px;
         display: flex;
         align-items: center;
@@ -759,7 +783,7 @@ body {
             margin-top: -3.5rem;
         }
 
-        .tabs-dimen{
+        .tabs-dimen {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -776,7 +800,7 @@ body {
             text-underline-position: from-font;
             text-decoration-skip-ink: none;
 
-            &:hover,&.active{
+            &:hover, &.active {
                 background: #393535A1;
                 font-family: $font-family-bold;
                 font-weight: 700;
@@ -784,7 +808,7 @@ body {
                 border-radius: 3px 3px 0px 0px;
                 border-bottom: 3px solid #AB0013;
 
-                &span{
+                &span {
                     font-weight: 700;
                 }
             }
@@ -792,6 +816,7 @@ body {
 
         }
     }
+
     // ----------TAB-------
 
 }

@@ -23,6 +23,10 @@ class PostStore
             'post_image' => 'nullable|image',
         ]);
 
+        if ($request->user()->channel()->doesntExist()) {
+            return $this->sendError('You are not creator', [], 400);
+        }
+
         $post =  Post::create([
             'caption' => $request->caption,
             'user_id' => auth()->id(),

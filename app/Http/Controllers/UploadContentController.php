@@ -16,18 +16,32 @@ class UploadContentController extends Controller
 {
     public function videos()
     {
-        $videos = VideoResource::collection(Video::orderBy('id', 'desc')->where('user_id',auth()->id())->where('short',false)->paginate(50))->resource;
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
+        $videos = VideoResource::collection(Video::withoutGlobalScope('allowed')->orderBy('id', 'desc')->where('user_id',auth()->id())->where('short',false)->paginate(50))->resource;
         $short = false;
         return inertia('content/Index',compact('videos','short'));
     }
     public function shorts()
     {
-        $videos = VideoResource::collection(Video::orderBy('id', 'desc')->where('user_id',auth()->id())->where('short',true)->paginate(50))->resource;
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
+        $videos = VideoResource::collection(Video::withoutGlobalScope('allowed')->orderBy('id', 'desc')->where('user_id',auth()->id())->where('short',true)->paginate(50))->resource;
         $short = true;
         return inertia('content/Index',compact('videos','short'));
     }
-    public function videoShow(Video $video)
+    public function videoShow($video)
     {
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
+        $video = Video::withoutGlobalScope('allowed')->findOrFail($video);
+
         $video = new VideoResource($video->load(['channel', 'country']));
 
         return inertia('content/show', compact(['video']));
@@ -35,35 +49,44 @@ class UploadContentController extends Controller
 
     public function videoCreate()
     {
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
         $countries = CountryResource::collection(Country::all());
-        $creators = ChannelResource::collection(Channel::all());
         $short = false;
-        return inertia('content/create',compact('countries','creators','short'));
+        return inertia('content/create',compact('countries','short'));
     }
     public function shortVideoCreate()
     {
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
         $countries = CountryResource::collection(Country::all());
-        $creators = ChannelResource::collection(Channel::all());
         $short = true;
-        return inertia('content/create',compact('countries','creators','short'));
+        return inertia('content/create',compact('countries','short'));
     }
 
     public function store(Request $request)
     {
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
         $request->validate([
             'thumbnail' => 'required|mimetypes:image/*',
             'video' => 'required|string|exists:temp_media,uuid',
             'title' => 'required',
             'description' => 'required',
             'location' => 'required',
-            'creator' => 'required|exists:users,id',
             'country' => 'required|exists:countries,id',
             'duration' => 'required',
             'short' => 'required|bool',
         ]);
 
         $video = Video::create([
-            'user_id' => $request->creator,
+            'user_id' => auth()->id(),
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
@@ -80,11 +103,12 @@ class UploadContentController extends Controller
 
         dispatch(new ProcessVideoMediaJob($video, $thumbnailPath, $videoPath));
 
-        return back();
+        return to_route('contents.videos.show', $video->id)->with('success', 'Video updated successfully');
     }
 
-    public function update(Request $request, Video $video)
+    public function update(Request $request, $video)
     {
+        $video = Video::withoutGlobalScope('allowed')->findOrFail($video);
 
         if  ($video->user_id != $request->user()->id) {
 
@@ -102,13 +126,11 @@ class UploadContentController extends Controller
             'video' => 'nullable|string|exists:temp_media,uuid',
             'title' => 'required',
             'description' => 'required',
-            'creator' => 'required|exists:users,id',
             'country' => 'required|exists:countries,id',
             'duration' => 'required',
         ]);
 
         $video->update([
-            'user_id' => $request->creator,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
@@ -135,20 +157,32 @@ class UploadContentController extends Controller
         return to_route('contents.videos.show', $video->id)->with('success', 'Video updated successfully');
     }
 
-    public function videoEdit(Video $video)
+    public function videoEdit($video)
     {
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
+        $video = Video::withoutGlobalScope('allowed')->findOrFail($video);
+
         $countries = CountryResource::collection(Country::all());
-        $creators = ChannelResource::collection(Channel::all());
-        return inertia('content/edit',compact('countries','creators','video'));
+        return inertia('content/edit',compact('countries','video'));
     }
-    public function shortVideoEdit(Video $video)
+    public function shortVideoEdit($video)
     {
+        if (auth()->user()->channel()->doesntExist()) {
+            return back()->with('error', 'You are not creator');
+        }
+
+        $video = Video::withoutGlobalScope('allowed')->findOrFail($video);
+
         $countries = CountryResource::collection(Country::all());
-        $creators = ChannelResource::collection(Channel::all());
-        return inertia('content/edit',compact('countries','creators','video'));
+        return inertia('content/edit',compact('countries','video'));
     }
-    public function destroy(Video $video)
+    public function destroy($video)
     {
+        $video = Video::withoutGlobalScope('allowed')->findOrFail($video);
+
         if  ($video->user_id != auth()->id()) {
 
             return back()->with('error', 'Seems like video does not belongs to you');
@@ -157,6 +191,4 @@ class UploadContentController extends Controller
 
         return back();
     }
-
-
 }

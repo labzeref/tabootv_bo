@@ -71,6 +71,10 @@ onUnmounted(() => {
         observer.value.disconnect();
     }
 });
+
+const handleDeletePost = (id) => {
+    posts.value = posts.value.filter(post => post.id !== id);
+}
 </script>
 
 <template>
@@ -84,7 +88,7 @@ onUnmounted(() => {
                 <!-- Render posts -->
                 <div v-for="(post, index) in posts" :key="index" class="right-div-community">
 
-                  <CommunityPost :post="post" :index="index" />
+                  <CommunityPost :post="post" :index="index" @delete="handleDeletePost"/>
                 </div>
 
                 <!-- Section to observe -->

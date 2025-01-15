@@ -25,37 +25,44 @@ const Settings = defineAsyncComponent(() => import('@/Components/svg/icons/setti
 const Exit = defineAsyncComponent(() => import('@/Components/svg/icons/exit.vue'));
 
 const user = computed(() => usePage().props.auth.user);
+const is_creator = computed(() => usePage().props.auth.user?.is_creator);
+const post_count = computed(() => usePage().props.auth.post_count);
 
 const NavLinks = [
     {
         label: 'Home',
         icon: home,
         url: route('home'),
-        active: route().current('home')
+        active: route().current('home'),
+        show: true,
     },
     {
         label: 'Shorts',
         icon: shorts,
         url: route('shorts.page'),
-        active: route().current('shorts.*')
+        active: route().current('shorts.*'),
+        show: true,
     },
     {
         label: 'Series',
         icon: series,
         url: route('series.index'),
-        active: route().current('series.*')
+        active: route().current('series.*'),
+        show: true,
     },
     {
         label: 'Videos',
         icon: videos,
         url: route('videos'),
-        active: route().current('videos')
+        active: route().current('videos'),
+        show: true,
     },
     {
         label: 'Community',
         icon: community,
         url: route('community'),
-        active: route().current('community')
+        active: route().current('community'),
+        show: post_count.value > 0 || is_creator.value,
     },
 ];
 
@@ -114,7 +121,7 @@ const toggleSideNav = () => {
             <div class="flex items-center justify-between max-nav w-full gap-1 lg:gap-[77px]">
                 <Logo/>
                 <div class="flex items-center justify-end w-full gap-1 lg:gap-6">
-                    <NavLink v-for="(link, index) in NavLinks" :key="index" :link="link"/>
+                    <NavLink v-for="(link, index) in NavLinks" :key="index" :link="link" v-show="link.show"/>
                 </div>
             </div>
 

@@ -7,7 +7,6 @@ import ChunkableFileInput from "@/Components/Inputs/ChunkableFileInput.vue";
 const Page = defineAsyncComponent(() => import("@/Components/Page.vue"));
 
 const props = defineProps({
-    creators: Array,
     countries: Array,
     short:Boolean
 })
@@ -18,14 +17,13 @@ const form = useForm({
     location: '',
     duration: '',
     country: '',
-    creator: 1,
     thumbnail: null,
     video: null,
     short: props.short,
 })
 
 const submit = () => {
-    form.post(route('contents.video.create'),{
+    form.post(route('contents.videos.store'),{
         onSuccess : () => {
             form.reset();
         }
@@ -74,15 +72,6 @@ const submit = () => {
                                        placeholder="Type Duration in seconds" v-model="form.duration"
                                        input-type="number"
                                        :errorMessage="form.errors.duration"/>
-                        </div>
-                        <div class="cards-bg mb-[25px]">
-                            <label for="creator">Creator </label>
-                            <VSelect :required="false" id="creator" name="creator" label="Creator" v-model="form.creator"
-                                     :errorMessage="form.errors.creator"
-                                     :items="creators"
-                                     item-title="name"
-                                     item-value="user_id"
-                            />
                         </div>
                         <div class="cards-bg mb-[25px]">
                             <label for="country"

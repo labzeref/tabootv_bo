@@ -144,6 +144,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('{post}', PostSingle::class)->name('show');
             Route::post('{post}/dislike', PostDislike::class)->name('dislike');
             Route::post('{post}/like', PostLikeAction::class)->name('like');
+            Route::delete('{post}/destroy', \App\Actions\Community\DeletePost::class)->name('destroy');
         });
 
         Route::prefix('/post-comments')->name('postComments.')->group(function () {
@@ -173,7 +174,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/videos/create', 'videoCreate')->name('videos.create');
             Route::get('/shorts', 'shorts')->name('shorts');
             Route::get('/shorts/create', 'shortVideoCreate')->name('shorts.create');
-            Route::post('/videos/store', 'store')->name('video.create');
+            Route::post('/videos/store', 'store')->name('videos.store');
             Route::get('/videos/{video}/edit', 'videoEdit')->name('videos.edit');
             Route::get('/shorts/{video}/edit', 'shortVideoEdit')->name('shorts.edit');
             Route::put('/video/{video}/edit', 'update')->name('video.update');

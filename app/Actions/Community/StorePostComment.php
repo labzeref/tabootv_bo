@@ -13,6 +13,7 @@ use App\Models\Series;
 use App\Models\User;
 use App\Models\Video;
 use App\Notifications\CommentReplyNotification;
+use App\Notifications\PostCommentReplyNotification;
 use App\Traits\ResponseMethodsTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -50,11 +51,10 @@ class StorePostComment
         }
 
 
-//        if ($request->parent_id) {
-//            $parentComment = $comment->parent;
-//
-//            Notification::send($parentComment->user, new CommentReplyNotification($user, $post));
-//        }
+        if ($request->parent_id) {
+            $parentComment = $comment->parent;
+            Notification::send($parentComment->user, new PostCommentReplyNotification($user, $post));
+        }
 
         return $comment;
     }

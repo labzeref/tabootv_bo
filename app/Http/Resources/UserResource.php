@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'profile_completed' => $this->profile_completed,
             'video_autoplay' => $this->video_autoplay,
             'badge' => $this->getBadge(),
+            'is_creator'=>\DB::table('channels')->where('user_id',$this->id)->count() > 0,
             'channel' => new ChannelResource($this->whenLoaded('channel')),
 
             $this->mergeWhen(

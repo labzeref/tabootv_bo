@@ -41,9 +41,15 @@ class Video extends Model implements HasMedia
 
         static::addGlobalScope('allowed', function (Builder $builder) {
             if (request()->is('api/*')) {
-                $builder->where('is_app_blocked', false);
+                $builder->where('is_app_blocked', false)->whereNotNull('published_at')
+                    ->whereHas('media', function ($query) {
+                        $query->where('collection_name', 'video');
+                    });
             } else {
-                $builder->where('is_blocked', false);
+                $builder->where('is_blocked', false)->whereNotNull('published_at')
+                    ->whereHas('media', function ($query) {
+                        $query->where('collection_name', 'video');
+                    });
             }
         });
 
