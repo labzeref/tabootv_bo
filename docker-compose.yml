@@ -1,0 +1,29 @@
+services:
+    app:
+        build:
+            context: ./docker
+            dockerfile: Dockerfile
+        container_name: tabootv_app_container
+        volumes:
+            - ./:/var/www/html
+        #        ports:
+        #            - "9090:8009"
+        #            - "6003:6003"
+        networks:
+            - shared_bridge
+        command: ["sh", "./scripts/app_container_script.sh"]
+
+    node:
+        image: node:22-alpine
+        container_name: tabootv_node_container
+        restart: always
+        working_dir: /var/www/html
+        volumes:
+            - "./:/var/www/html"
+        networks:
+            - shared_bridge
+        command: ["sh", "./scripts/node_container_script.sh"]
+
+networks:
+    shared_bridge:
+        external: true
