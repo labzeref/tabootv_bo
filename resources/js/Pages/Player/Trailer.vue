@@ -23,7 +23,7 @@ defineProps({
     <div class="max-w-[1860px] mx-auto w-full px-[12px] md:px-[30px]">
         <v-row>
             <v-col cols="12" md="12" lg="8" xl="8" class="relative">
-                <VideoPlayer :thumbnail="series.thumbnail" :url_1080="series.trailer_url" :url_720="series.trailer_url" :url_480="series.trailer_url"/>
+                <VideoPlayer :thumbnail="series.thumbnail" url_1080="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" url_720="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" url_480="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"/>
             </v-col>
             <v-col cols="12" md="12" lg="4" xl="4">
                 <div class="bg-series-detail">
