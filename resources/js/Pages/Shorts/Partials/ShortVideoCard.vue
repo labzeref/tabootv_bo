@@ -57,6 +57,20 @@ const manager = reactive({
     }
 })
 
+const videoUrls = [
+    'https://assets.mixkit.co/videos/34552/34552-720.mp4',
+    'https://assets.mixkit.co/videos/34486/34486-720.mp4',
+    'https://assets.mixkit.co/videos/34406/34406-720.mp4',
+    'https://assets.mixkit.co/videos/34546/34546-720.mp4',
+    'https://assets.mixkit.co/videos/32642/32642-720.mp4',
+    'https://assets.mixkit.co/videos/40971/40971-720.mp4'
+];
+
+function getRandomVideoUrl() {
+    const randomIndex = Math.floor(Math.random() * videoUrls.length);
+    return videoUrls[randomIndex];
+}
+
 onMounted(() => {
     manager.updateCommentList(props.video.comments)
 })
@@ -70,7 +84,7 @@ onMounted(() => {
         <!--        body-->
         <div class="relative mx-auto md:ml-auto md:mr-0 flex items-end gap-7">
             <!--            player-->
-            <ShortVideoPlayer :url="video.url_720" :index/>
+            <ShortVideoPlayer :url="getRandomVideoUrl()" :index/>
 
             <!--           Desktop action buttons-->
             <DesktopActionButtons :manager/>

@@ -27,8 +27,8 @@ const modules = [Pagination, FreeMode];
     <div class="max-w-[1860px] mx-auto w-full px-[12px] md:px-[30px]">
         <v-row align="start">
             <v-col cols="12" md="12" lg="8" xl="8">
-                <VideoPlayer :thumbnail="video.thumbnail" :url_1440="video.url_1440" :url_1080="video.url_1080"
-                             :url_720="video.url_720" :url_480="video.url_480"/>
+                <VideoPlayer :thumbnail="video.thumbnail" url_1440="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" :url_1080="video.url_1080"
+                             url_720="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" url_480="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"/>
 
                 <div class="mt-[25px]">
                     <h2 class="capitalize title">{{ video.title }}</h2>

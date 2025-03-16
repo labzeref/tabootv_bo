@@ -32,7 +32,7 @@ class LongVideoSeeder extends Seeder
                 if ($i < 32) {
                     continue;
                 }
-                
+
                 $directory = glob(storage_path('/images/videos/long/*'));
                 $randomFile = $directory[array_rand($directory)];
 
@@ -56,14 +56,14 @@ class LongVideoSeeder extends Seeder
                     $video->categories()->attach($category->id);
                 }
 
-                $videoPath = _downloadVideo($data[$columns['link']], $data[$columns['platform']]);
+//                $videoPath = _downloadVideo($data[$columns['link']], $data[$columns['platform']]);
 
                 $video->addMedia($randomFile)
                     ->preservingOriginal()
                     ->toMediaCollection('thumbnail');
 
-                $video->addMedia($videoPath)
-                    ->toMediaCollection('video');
+//                $video->addMedia($videoPath)
+//                    ->toMediaCollection('video');
             }
 
             fclose($handle);

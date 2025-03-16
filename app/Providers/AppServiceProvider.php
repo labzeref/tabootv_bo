@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Listeners\ConvertVideos;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Spatie\MediaLibrary\MediaCollections\Events\MediaHasBeenAddedEvent;
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
 
         JsonResource::withoutWrapping();
+
+        if (config('app.force_https')) {
+            URL::forceScheme('https');
+        }
     }
 }

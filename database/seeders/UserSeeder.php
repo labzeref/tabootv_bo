@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
             'gender' => GenderEnum::male,
             'email' => 'arab@taboo.tv',
             'password' => Hash::make('password'),
+            'lifetime_membership' => true,
             'profile_completed' => true,
             'email_verified_at' => now(),
         ]);

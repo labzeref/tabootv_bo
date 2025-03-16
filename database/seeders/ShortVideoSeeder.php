@@ -46,18 +46,25 @@ class ShortVideoSeeder extends Seeder
                     'duration' => 746,
                 ]);
 
+                $directory = glob(storage_path('/images/videos/shorts/*'));
+                $randomFile = $directory[array_rand($directory)];
+
+                $video->addMedia($randomFile)
+                    ->preservingOriginal()
+                    ->toMediaCollection('thumbnail');
+
 //                $videoPath = _downloadVideo($data[$columns['link']], 'youtube');
 
-                try {
-                    $video->addMedia(storage_path('/app/public/object2.mp4'))
-                    ->preservingOriginal()
-                    ->toMediaCollection('video');
-                } catch (\Throwable $throwable) {
-                    dd($throwable);
-                }
+//                try {
+//                    $video->addMedia(storage_path('/app/public/object2.mp4'))
+//                    ->preservingOriginal()
+//                    ->toMediaCollection('video');
+//                } catch (\Throwable $throwable) {
+//                    dd($throwable);
+//                }
 
 //                dd($video->refresh()->getFirstTemporaryUrl(now()->addDay(), 'video', '720p'));
-                dd($video->refresh()->getFirstMediaUrl('video', '720p'));
+//                dd($video->refresh()->getFirstMediaUrl('video', '720p'));
             }
 
 
