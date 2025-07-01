@@ -98,10 +98,6 @@ h2 {
         font-size: 24px !important;
         font-weight: 500 !important;
         line-height: 36px !important;
-        @include for_breakpoint(mobile) {
-            font-size: 16px !important;
-            line-height: 16px !important;
-        }
     }
 
     @include for_breakpoint(desktop) {
@@ -130,10 +126,6 @@ h2 {
         @include for_breakpoint(mobile) {
             line-height: 137.5% !important;
         }
-    }
-
-    &.mix-blend{
-        mix-blend-mode: overlay;
     }
 
 }
@@ -349,9 +341,6 @@ p {
     &.lh-20 {
         line-height: 20px;
     }
-    &.lh-16 {
-        line-height: 100%;
-    }
 }
 
 .fs-14 {
@@ -369,26 +358,6 @@ p {
     &.lh-14 {
         line-height: 14px;
     }
-}
-.fs-15-community {
-    color: #FFF ;
-    font-family: $font-family-bold;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 20px;
-    word-break: break-all;
-
-    &.font-400{
-        font-family: $font-family-book;
-        font-weight: 400;
-        color: #9F9F9F;
-    }
-
-    &.color-white{
-        color: #fff;
-    }
-
 }
 
 .fs-card {
@@ -410,11 +379,12 @@ p {
         font-size: 13px !important;
         line-height: 18px;
     }
+
 }
 
 
 .fw-700 {
-    font-weight: 700 !important;
+    font-weight: 700;
 }
 
 .fw-500 {

@@ -58,33 +58,26 @@ class HandlePaymentTrialJob implements ShouldQueue
 
         $plan = Plan::where('copecart_id', $copecartProductId)->first();
 
-        if (!$plan) {
+         if (!$plan) {
             Log::channel('copecart')->info('Plan not found', ['data' => $this->data]);
 
             throw new \Exception('Plan not found');
         }
 
 
-        if ($this->data['next_payment_at']) {
-            $nextPaymentAt = Carbon::parse($this->data['next_payment_at']);
-        } else {
-            $nextPaymentAt = now()->addDays($plan->trial_days);
-        }
-
         $user->subscriptions()->create([
             'plan_id' => $plan->id,
-            'start_at' => $this->data['order_date'] ? Carbon::parse($this->data['order_date']) : now(),
-            'end_at' => $nextPaymentAt,
-            'next_bill_at' => $nextPaymentAt,
+            'start_at' => $this->data['order_date']  ? Carbon::parse($this->data['order_date']) : null,
+            'end_at' => now()->addDays($plan->trial_days),
+            'next_bill_at' => $this->data['next_payment_at']  ? Carbon::parse($this->data['next_payment_at']) : null,
             'status' => SubscriptionStatusEnum::trial,
             'payload' => $this->data,
             'provider' => 'copecart',
-            'copecart_order_id' => $this->data['order_id'],
         ]);
 
         if ($user->wasRecentlyCreated) {
-            $reset_url = route('password.reset', ['token' => \Illuminate\Support\Facades\Password::createToken($user), 'email' => $user->email]);
-            Mail::to($user->email)->send(new NewSubscribedMail($reset_url, $plan));
+            $reset_url = route('password.reset',['token'=>\Illuminate\Support\Facades\Password::createToken($user),'email'=>$user->email]);
+            Mail::to($user->email)->send(new NewSubscribedMail($reset_url,$plan));
         }
     }
 }

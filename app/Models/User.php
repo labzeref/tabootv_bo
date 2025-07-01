@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,7 +39,7 @@ class User extends Authenticatable implements HasMedia
         'remember_token',
     ];
 
-    protected $with = ['media','channel'];
+    protected $with = ['media'];
 
     /**
      * Get the attributes that should be cast.
@@ -156,29 +155,14 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(VideoLike::class);
     }
 
-    public function postLikes(): HasMany
-    {
-        return $this->hasMany(PostLike::class);
-    }
-
     public function likedVideos(): BelongsToMany
     {
         return $this->belongsToMany(Video::class, 'video_likes', 'user_id', 'video_id');
     }
 
-    public function postComments(): HasMany
-    {
-        return $this->hasMany(PostComment::class);
-    }
-
     public function commentLikes(): HasMany
     {
         return $this->hasMany(CommentLike::class);
-    }
-
-    public function postCommentLikes(): HasMany
-    {
-        return $this->hasMany(PostCommentLike::class);
     }
 
     public function likedComments(): BelongsToMany
@@ -219,25 +203,6 @@ class User extends Authenticatable implements HasMedia
     public function blockUsers(): MorphToMany
     {
         return $this->morphedByMany(User::class, 'blockable', 'blocks');
-    }
-    public function followedChannels():BelongsToMany
-    {
-        return $this->belongsToMany(Channel::class, 'channel_user')->withTimestamps();
-    }
-
-    public function deviceTokens(): HasMany
-    {
-        return $this->hasMany(DeviceToken::class);
-    }
-
-    public function channel(): HasOne
-    {
-        return $this->hasOne(Channel::class);
-    }
-
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class);
     }
 
     public function isAppleUser(){

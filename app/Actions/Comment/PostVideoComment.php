@@ -39,6 +39,7 @@ class PostVideoComment
 
         if ($request->parent_id) {
             $parentComment = $comment->parent;
+
             Notification::send($parentComment->user, new CommentReplyNotification($user, $video));
         }
 

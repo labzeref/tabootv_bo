@@ -28,50 +28,5 @@ class UserSeeder extends Seeder
             'profile_completed' => true,
             'email_verified_at' => now(),
         ]);
-        User::create([
-            'country_id' => Country::where('iso', 'SAU')->value('id') ?? Country::inRandomOrder()->value('id'),
-            'first_name' => 'Arab',
-            'last_name' => 'Uncut',
-            'display_name' => 'Arabuncut',
-            'gender' => GenderEnum::male,
-            'email' => 'arab2@taboo.tv',
-            'password' => Hash::make('password'),
-            'profile_completed' => true,
-            'email_verified_at' => now(),
-        ]);
-        User::create([
-            'country_id' => Country::where('iso', 'SAU')->value('id') ?? Country::inRandomOrder()->value('id'),
-            'first_name' => 'Arab',
-            'last_name' => 'Uncut',
-            'display_name' => 'Arabuncut',
-            'gender' => GenderEnum::male,
-            'email' => 'arab3@taboo.tv',
-            'password' => Hash::make('password'),
-            'profile_completed' => true,
-            'email_verified_at' => now(),
-        ]);
-        User::create([
-            'country_id' => Country::where('iso', 'SAU')->value('id') ?? Country::inRandomOrder()->value('id'),
-            'first_name' => 'Arab',
-            'last_name' => 'Uncut',
-            'display_name' => 'Arabuncut',
-            'gender' => GenderEnum::male,
-            'email' => 'arab4@taboo.tv',
-            'password' => Hash::make('password'),
-            'profile_completed' => true,
-            'email_verified_at' => now(),
-        ]);
-        User::create([
-            'country_id' => Country::where('iso', 'SAU')->value('id') ?? Country::inRandomOrder()->value('id'),
-            'first_name' => 'Arab',
-            'last_name' => 'Uncut',
-            'display_name' => 'Arabuncut',
-            'gender' => GenderEnum::male,
-            'email' => 'arab5@taboo.tv',
-            'password' => Hash::make('password'),
-            'profile_completed' => true,
-            'email_verified_at' => now(),
-        ]);
-
     }
 }

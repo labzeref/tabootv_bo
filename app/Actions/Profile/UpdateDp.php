@@ -18,7 +18,7 @@ public function rules(Request $request): array
 {
     return [
         'base64' => 'nullable|boolean',
-        'dp' => $request->input('base64') ? 'required|string' : 'required|mimetypes:image/*',
+        'dp' => $request->input('base64') ? 'required|string' : 'required|mimetypes:image/*|max:4096',
     ];
 }
 

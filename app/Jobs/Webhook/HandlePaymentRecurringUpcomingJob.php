@@ -62,7 +62,6 @@ class HandlePaymentRecurringUpcomingJob implements ShouldQueue
             'status' => SubscriptionStatusEnum::active,
             'payload' => $this->data,
             'provider' => 'copecart',
-            'copecart_order_id' => $this->data['order_id'],
         ]);
     }
 }

@@ -41,15 +41,9 @@ class Video extends Model implements HasMedia
 
         static::addGlobalScope('allowed', function (Builder $builder) {
             if (request()->is('api/*')) {
-                $builder->where('is_app_blocked', false)->whereNotNull('published_at')
-                    ->whereHas('media', function ($query) {
-                        $query->where('collection_name', 'video');
-                    });
+                $builder->where('is_app_blocked', false);
             } else {
-                $builder->where('is_blocked', false)->whereNotNull('published_at')
-                    ->whereHas('media', function ($query) {
-                        $query->where('collection_name', 'video');
-                    });
+                $builder->where('is_blocked', false);
             }
         });
 
@@ -193,9 +187,5 @@ class Video extends Model implements HasMedia
     public function likedByUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'video_likes', 'video_id', 'user_id');
-    }
-    public function country(): BelongsTo
-    {
-        return $this->belongsTo(Country::class);
     }
 }

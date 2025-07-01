@@ -41,7 +41,6 @@ class HandleInertiaRequests extends Middleware
                 'user' => $user,
                 'apple_user' => $user && $user->isAppleUser(),
                 'manage_subscription_url' => $user?->manageSubscriptionUrl(),
-                'post_count'=>\DB::table('posts')->count(),
             ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),

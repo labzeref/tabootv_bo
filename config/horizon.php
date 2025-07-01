@@ -206,19 +206,6 @@ return [
             'timeout' => 5000,
             'nice' => 0,
         ],
-        'supervisor-3' => [
-            'connection' => 'redis',
-            'queue' => ['conversion'],
-            'balance' => 'auto',
-            'autoScalingStrategy' => 'time',
-            'maxProcesses' => 1,
-            'maxTime' => 0,
-            'maxJobs' => 0,
-            'memory' => 5000, // in mb
-            'tries' => 1,
-            'timeout' => 5000, // in sec
-            'nice' => 0,
-        ],
     ],
 
     'environments' => [

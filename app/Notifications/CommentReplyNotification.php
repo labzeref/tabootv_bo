@@ -9,10 +9,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Kreait\Firebase\Contract\Messaging;
-use Kreait\Firebase\Messaging\CloudMessage;
-use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
-
 
 class CommentReplyNotification extends Notification
 {
@@ -69,9 +65,6 @@ class CommentReplyNotification extends Notification
 
         }
         $name = $this->replier->display_name ?: $this->replier->first_name;
-
-        $this->sendFirebaseNotification($notifiable, $name,$this->video->uuid,$route_type);
-
         return [
             'type' => NotificationTypeEnum::commentReply->value,
             'image_path' => null,
@@ -80,31 +73,5 @@ class CommentReplyNotification extends Notification
             'route' => $route,
             'message' => "*{$name}* has replied to your comment",
         ];
-    }
-
-    protected function sendFirebaseNotification(object $notifiable, string $name,$model_uuid,$model_type): void
-    {
-        $messaging = app()->make(Messaging::class);
-
-        // Ensure the user has device tokens
-        if ($notifiable->deviceTokens->isEmpty()) {
-            return;
-        }
-
-        foreach ($notifiable->deviceTokens as $deviceToken) {
-            $message = CloudMessage::withTarget('token', $deviceToken->value)
-                ->withNotification(FirebaseNotification::create('tabootv', "*$name* has replied to your comment"))
-                ->withData([
-                    'type' => NotificationTypeEnum::commentReply->value,
-                    'model_uuid' => $model_uuid,
-                    'model_type' => $model_type,
-                ]);
-
-            try {
-                $messaging->send($message);
-            } catch (\Exception $e) {
-                \Log::error("Error sending Firebase notification: {$e->getMessage()}");
-            }
-        }
     }
 }

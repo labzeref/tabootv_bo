@@ -264,7 +264,7 @@ class VideosSeeder extends Seeder
                 'trailer_thumbnail_path' => storage_path('/images/series/trailer.png'),
                 'desktop_banner_path' => storage_path('/images/series/desktop_banner.png'),
                 'mobile_banner_path' => storage_path('/images/series/mobile_banner.png'),
-//                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
+                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
                 'published_at' => now()->subMonth(),
                 'category_id' => 1,
                 'videos' => [
@@ -351,7 +351,7 @@ class VideosSeeder extends Seeder
                 'trailer_thumbnail_path' => storage_path('/images/series/trailer.png'),
                 'desktop_banner_path' => storage_path('/images/series/desktop_banner.png'),
                 'mobile_banner_path' => storage_path('/images/series/mobile_banner.png'),
-//                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
+                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
                 'published_at' => now()->subMonth(),
                 'category_id' => 2,
                 'videos' => [
@@ -437,7 +437,7 @@ class VideosSeeder extends Seeder
                 'trailer_thumbnail_path' => storage_path('/images/series/trailer.png'),
                 'desktop_banner_path' => storage_path('/images/series/desktop_banner.png'),
                 'mobile_banner_path' => storage_path('/images/series/mobile_banner.png'),
-//                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
+                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
                 'published_at' => now()->subMonth(),
                 'category_id' => 3,
                 'videos' => [
@@ -524,7 +524,7 @@ class VideosSeeder extends Seeder
                 'desktop_banner_path' => storage_path('/images/series/desktop_banner.png'),
                 'mobile_banner_path' => storage_path('/images/series/mobile_banner.png'),
                 'published_at' => now(),
-//                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
+                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
                 'category_id' => 4,
                 'videos' => [
                     [
@@ -610,7 +610,7 @@ class VideosSeeder extends Seeder
                 'desktop_banner_path' => storage_path('/images/series/desktop_banner.png'),
                 'mobile_banner_path' => storage_path('/images/series/mobile_banner.png'),
                 'published_at' => now(),
-//                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
+                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
                 'category_id' => 5,
                 'videos' => [
                     [
@@ -695,7 +695,7 @@ class VideosSeeder extends Seeder
                 'trailer_thumbnail_path' => storage_path('/images/series/trailer.png'),
                 'desktop_banner_path' => storage_path('/images/series/desktop_banner.png'),
                 'mobile_banner_path' => storage_path('/images/series/mobile_banner.png'),
-//                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
+                'trailer' => 'https://rumble.com/embed/v5jm2mz/?pub=3ybkyn',
                 'published_at' => now(),
                 'category_id' => 6,
                 'videos' => [

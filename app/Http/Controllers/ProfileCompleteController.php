@@ -21,17 +21,7 @@ class ProfileCompleteController extends Controller
             'last_name' => 'required|max:255',
             'display_name' => 'required|max:20',
             'gender' => ['required', Rule::enum(GenderEnum::class)],
-            'country_id' => [
-                'required',
-                'integer',
-                'exists:countries,id',
-                function ($attribute, $value, $fail) {
-                    // Check if the value is numeric
-                    if (!is_numeric($value)) {
-                        $fail('The ' . $attribute . ' must be a valid integer.');
-                    }
-                }
-            ],
+            'country_id' => 'required|exists:countries,id',
             'phone_number' => 'nullable|phone:INTERNATIONAL',
         ]);
 

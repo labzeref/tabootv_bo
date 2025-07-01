@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Models\DeviceToken;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
@@ -55,13 +54,6 @@ class ApiRegisterController extends Controller
 
         event(new Registered($user));
 
-        if ($request->device_token) {
-            // Reassign or create the device token
-            DeviceToken::updateOrCreate(
-                ['value' => $request->device_token], // Match on device token
-                ['user_id' => $user->id] // Assign or reassign to the current user
-            );
-        }
         $response = [
             'user' => new UserResource($user),
             'subscribed' => $user->subscribed(),

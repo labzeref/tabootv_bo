@@ -11,7 +11,6 @@ class EnsureSubscriptionMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-
         if ($request->user()->subscribed()) {
             return $next($request);
         }

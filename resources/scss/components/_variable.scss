@@ -19,7 +19,6 @@ $primary-color: #ff3a44;
     --dark-9d: #92929D;
     --black-0b: #0A070B;
     --black-4d: #4742424D;
-    --white-fb: #FAFAFB;
 }
 
 
@@ -59,9 +58,6 @@ $font-family-book: "GothamBook", sans-serif;
 .text-dark-dc{
     color: var(--dark-dc);
 }
-.text-dark-9d{
-    color: var(--dark-9d);
-}
 .text-secondary-9f{
     color: var(--secondary-color);
 }
@@ -70,9 +66,6 @@ $font-family-book: "GothamBook", sans-serif;
 }
 .text-accent{
     color: var(--accent-color);
-}
-.text-white-fb{
-    color: var(--white-fb);
 }
 
 

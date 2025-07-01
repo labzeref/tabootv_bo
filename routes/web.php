@@ -2,19 +2,6 @@
 
 use App\Actions\Comment\PostVideoComment;
 use App\Actions\Comment\VideoCommentsList;
-use App\Actions\Community\CreatorFollowToggle;
-use App\Actions\Community\CreatorList;
-use App\Actions\Community\CreatorShow;
-use App\Actions\Community\PostCommentDislikeToggle;
-use App\Actions\Community\PostCommentLikeToggle;
-use App\Actions\Community\PostCommentList;
-use App\Actions\Community\PostCommentRepliesList;
-use App\Actions\Community\PostDislike;
-use App\Actions\Community\PostLikeAction;
-use App\Actions\Community\PostList;
-use App\Actions\Community\PostSingle;
-use App\Actions\Community\PostStore;
-use App\Actions\Community\StorePostComment;
 use App\Actions\Profile\DeactivateAccount;
 use App\Actions\Profile\DeleteAccount;
 use App\Actions\Profile\EditContact;
@@ -26,21 +13,13 @@ use App\Actions\Profile\UpdateDp;
 use App\Actions\Profile\UpdateEmail;
 use App\Actions\Profile\UpdatePassword;
 use App\Actions\Profile\UpdateProfile;
-use App\Actions\User\UserPostsList;
-use App\Actions\User\UserSeriesList;
-use App\Actions\User\UserShortList;
-use App\Actions\User\UserVideoList;
-use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileCompleteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\ShortVideoController;
-use App\Http\Controllers\TempMediaController;
-use App\Http\Controllers\UploadContentController;
 use App\Http\Controllers\VideoController;
-use App\Http\Middleware\ActiveMiddleware;
 use App\Http\Middleware\EnsureNotSubscribedMiddleware;
 use App\Http\Middleware\EnsureProfileCompleteMiddleware;
 use App\Http\Middleware\EnsureProfileNotCompleteMiddleware;
@@ -93,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('deactivate', DeactivateAccount::class)->name('deactivate');
     });
 
-    Route::middleware([EnsureSubscriptionMiddleware::class, EnsureProfileCompleteMiddleware::class, ActiveMiddleware::class])->group(function () {
+    Route::middleware([EnsureSubscriptionMiddleware::class, EnsureProfileCompleteMiddleware::class])->group(function () {
         Route::prefix('/shorts')->name('shorts.')->group(function () {
             Route::get('/list', \App\Actions\ShortVideos\ShortVideosList::class)->name('list');
             Route::get('/{uuid?}', ShortVideoController::class)->name('page');
@@ -118,105 +97,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/{comment:uuid}/dislike-toggle', \App\Actions\Comment\CommentDislikeToggle::class)->name('toggle-dislike');
         });
 
-
-
-
-
-
-
-
-
-
-
-
         Route::controller(MainController::class)->group(function () {
             Route::get('/', 'home')->name('home');
             Route::get('/videos', 'videos')->name('videos');
             Route::get('/searches', 'searches')->name('searches');
-            Route::get('community/{post?}', 'community')->name('community');
-            Route::get('creator', 'creator')->name('creator');
-
         });
-
-        Route::prefix('/posts')->name('posts.')->group(function () {
-            Route::get('/{post?}', PostList::class)->name('index');
-            Route::post('/', PostStore::class)->name('store');
-            Route::get('{post}', PostSingle::class)->name('show');
-            Route::post('{post}/dislike', PostDislike::class)->name('dislike');
-            Route::post('{post}/like', PostLikeAction::class)->name('like');
-            Route::delete('{post}/destroy', \App\Actions\Community\DeletePost::class)->name('destroy');
-        });
-
-        Route::prefix('/post-comments')->name('postComments.')->group(function () {
-            Route::get('/posts/{post}', PostCommentList::class)->name('list');
-            Route::post('/posts/{post}', StorePostComment::class)->name('store');
-            Route::post('/{postComment}/dislike-toggle', PostCommentDislikeToggle::class)->name('dislike');
-            Route::post('/{postComment}/like-toggle', PostCommentLikeToggle::class)->name('like');
-            Route::get('/{postComment}/replies', PostCommentRepliesList::class)->name('replies');
-        });
-
-        Route::prefix('/creators')->name('creators.')->group(function () {
-            // Comment-related routes for posts
-            Route::get('/', CreatorList::class)->name('index');
-            Route::get('/{channel}', CreatorShow::class)->name('show');
-            Route::post('/{channel}/follow-toggle', CreatorFollowToggle::class)->name('follow-toggle');
-            Route::get('creator-profile/{channel}', [ChannelController::class,'creatorsProfile'])->name('profile');
-
-            Route::get('creator-videos/{channel}', UserVideoList::class)->name('videos');
-            Route::get('creator-shorts/{channel}', UserShortList::class)->name('shorts');
-            Route::get('creator-series/{channel}', UserSeriesList::class)->name('series');
-            Route::get('creator-posts/{channel}', UserPostsList::class)->name('posts');
-        });
-
-        Route::controller(UploadContentController::class)->prefix('/contents')->name('contents.')->group(function () {
-            Route::get('/videos', 'videos')->name('videos');
-            Route::get('/videos/{video}/show', 'videoShow')->name('videos.show');
-            Route::get('/videos/create', 'videoCreate')->name('videos.create');
-            Route::get('/shorts', 'shorts')->name('shorts');
-            Route::get('/shorts/create', 'shortVideoCreate')->name('shorts.create');
-            Route::post('/videos/store', 'store')->name('videos.store');
-            Route::get('/videos/{video}/edit', 'videoEdit')->name('videos.edit');
-            Route::get('/shorts/{video}/edit', 'shortVideoEdit')->name('shorts.edit');
-            Route::put('/video/{video}/edit', 'update')->name('video.update');
-            Route::delete('/video/{video}/delete', 'destroy')->name('video.delete');
-
-
-        });
-
-        Route::controller(TempMediaController::class)->prefix('/temp_media')->name('temp_media.')
-            ->group(function () {
-                Route::post('/get-uuid', 'getUuid')->name('get-uuid');
-                Route::post('/upload', 'upload')->name('upload');
-                Route::delete('/{tempMedia:uuid}', 'destroy')->name('destroy');
-            });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         Route::prefix('/home')->name('home.')->group(function () {
             Route::get('/banners-list', \App\Actions\Home\BannerList::class)->name('banners-list');
@@ -257,21 +142,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/read-all', \App\Actions\Notification\ReadAllNotifications::class)->name('read-all');
             Route::delete('/{notification}', \App\Actions\Notification\DestroyNotification::class)->name('destroy');
         });
-
-
     });
 });
 
 Route::get('/apple',function (){
     return redirect()->away('https://apps.apple.com/us/app/taboo-tv/id6738045672');
 });
-// Frontend Pages
-
-Route::inertia('notifications', 'Notification/Index')->name('notifications');
-Route::inertia('trailer', 'Player/Trailer')->name('trailer');
-Route::inertia('series-player', 'Player/Series')->name('series-player');
-Route::inertia('video-player', 'Player/Video')->name('video-player');
-
 
 Route::prefix('/asset')->name('asset.')->group(function () {
     require __DIR__ . '/asset.php';

@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Process;
 
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use FFMpeg\Format\Video\X264;
-
 /**
  * Get the temporary url of the given path and also cached until the expiry
  */
@@ -228,79 +224,4 @@ function _getBestQuality(string $videoUrl, string $platform)
 
         return [$videoFormats[0]['format_id'], null]; // Return the format ID of the best video
     }
-}
-
-function transcodeVideo(Media $mediaItem, bool $isShort = false)
-{
-    // 1) Determine the target dimensions based on short or long
-    //    - For "short" videos (vertical), we use 9:16 sizing (e.g., 480x852, 720x1280, 1080x1920)
-    //    - For "long" videos (horizontal), we use 16:9 sizing (e.g., 854x480, 1280x720, 1920x1080)
-
-    if ($isShort) {
-        // YouTube Shorts (vertical aspect ratio)
-        $conversions = [
-            '480'  => [480, 852],   // often 852 or 853 for a perfect 9:16 ratio
-            '720'  => [720, 1280],
-            '1080' => [1080, 1920],
-        ];
-    } else {
-        // YouTube Long (horizontal aspect ratio)
-        $conversions = [
-            '480'  => [854, 480],
-            '720'  => [1280, 720],
-            '1080' => [1920, 1080],
-        ];
-    }
-
-    // 2) Original file path (on disk).
-    //    Example: $mediaItem->disk is 'local' or 'public'
-    //    $mediaItem->getPath() is the absolute path
-    $originalPath = $mediaItem->getPath();
-
-    // 3) For each resolution, run FFmpeg to produce a new MP4
-    foreach ($conversions as $label => [$width, $height]) {
-        $filename = \Illuminate\Support\Str::uuid() . '.mp4';
-        $convertedPath = storage_path("app/temp/converted/{$filename}");
-        try {
-            // Perform the transcode
-            FFMpeg::fromDisk($mediaItem->disk)
-                ->open($mediaItem->getPathRelativeToRoot())
-                ->export()
-                ->toDisk('app')   // Where to save
-                ->inFormat(
-                    (new X264('aac', 'libx264'))   // audio: aac, video: libx264
-                    ->setKiloBitrate(1200)     // 1.2 Mbps video
-                    ->setAudioKiloBitrate(128) // 128 kbps audio
-                    ->setAudioChannels(2)      // stereo
-                )
-                ->resize($width, $height)
-                ->save("temp/converted/{$filename}");
-
-
-            $mediaFileName = $mediaItem->name;
-            $finalRelativePath = config('media-library.prefix').'/'.$mediaItem->id.'/conversions/'.$mediaFileName.'-'.$label.'.mp4';
-
-            Storage::disk($mediaItem->disk)->put(
-                $finalRelativePath,
-                file_get_contents($convertedPath));
-
-            unlink($convertedPath);
-
-        }catch (\Throwable $throwable) {
-            logger()->error($throwable->getMessage());
-            unlink($convertedPath);
-            throw $throwable;
-        }
-
-
-    }
-}
-function bitrateFor(string $label): int
-{
-    return match($label) {
-        '480'  => 800,   // 800 kbps
-        '720'  => 1500,  // 1.5 Mbps
-        '1080' => 3000,  // 3 Mbps
-        default => 1000,
-    };
 }

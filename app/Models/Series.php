@@ -26,9 +26,9 @@ class Series extends Model implements HasMedia
 
         static::addGlobalScope('allowed', function (Builder $builder) {
             if (request()->is('api/*')) {
-                $builder->where('is_app_blocked', false)->whereNotNull('published_at');
+                $builder->where('is_app_blocked', false);
             } else {
-                $builder->where('is_blocked', false)->whereNotNull('published_at');
+                $builder->where('is_blocked', false);
             }
         });
 

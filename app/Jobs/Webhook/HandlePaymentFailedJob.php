@@ -42,7 +42,7 @@ class HandlePaymentFailedJob implements ShouldQueue
             throw new \Exception('Plan not found');
         }
 
-        $subscription = $user->subscriptions()->active()->where('plan_id', $plan->id)->where('copecart_order_id', $this->data['order_id'])->latest('id')->first();
+        $subscription = $user->subscriptions()->active()->where('plan_id', $plan->id)->first();
 
         if (!$subscription) {
             Log::channel('copecart')->info('Subscription not found', ['data' => $this->data]);
@@ -52,7 +52,7 @@ class HandlePaymentFailedJob implements ShouldQueue
 
         $subscription->update([
             'end_at' => now(),
-            'status' => SubscriptionStatusEnum::paymentFailed,
+            'status' => SubscriptionStatusEnum::expired->value,
         ]);
     }
 }

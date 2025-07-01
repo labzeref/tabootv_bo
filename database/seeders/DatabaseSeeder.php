@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Plan;
-use App\Models\PostComment;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -29,10 +28,7 @@ class DatabaseSeeder extends Seeder
         //            LongVideoSeeder::class,
         //            ShortVideoSeeder::class,
                     VideosSeeder::class,
-                    ChatroomSeeder::class,
-                    PostSeeder::class,
-                    CommentsTableSeeder::class,
-                    PostCommentSeeder::class,
+                    ChatroomSeeder::class
                 ]);
           }else{
                 $this->call([
@@ -45,12 +41,7 @@ class DatabaseSeeder extends Seeder
                     LongVideoSeeder::class,
                     ShortVideoSeeder::class,
         //            VideosSeeder::class,
-                    ChatroomSeeder::class,
-                    PostSeeder::class,
-                    CommentsTableSeeder::class,
-                    PostCommentSeeder::class,
-
-
+                    ChatroomSeeder::class
                 ]);
          }
     }

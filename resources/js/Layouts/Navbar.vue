@@ -25,44 +25,31 @@ const Settings = defineAsyncComponent(() => import('@/Components/svg/icons/setti
 const Exit = defineAsyncComponent(() => import('@/Components/svg/icons/exit.vue'));
 
 const user = computed(() => usePage().props.auth.user);
-const is_creator = computed(() => usePage().props.auth.user?.is_creator);
-const post_count = computed(() => usePage().props.auth.post_count);
 
 const NavLinks = [
     {
         label: 'Home',
         icon: home,
         url: route('home'),
-        active: route().current('home'),
-        show: true,
+        active: route().current('home')
     },
     {
         label: 'Shorts',
         icon: shorts,
         url: route('shorts.page'),
-        active: route().current('shorts.*'),
-        show: true,
+        active: route().current('shorts.*')
     },
     {
         label: 'Series',
         icon: series,
         url: route('series.index'),
-        active: route().current('series.*'),
-        show: true,
+        active: route().current('series.*')
     },
     {
         label: 'Videos',
         icon: videos,
         url: route('videos'),
-        active: route().current('videos'),
-        show: true,
-    },
-    {
-        label: 'Community',
-        icon: community,
-        url: route('community'),
-        active: route().current('community'),
-        show: post_count.value > 0 || is_creator.value,
+        active: route().current('videos')
     },
 ];
 
@@ -84,7 +71,7 @@ let menu = [
     },
 ]
 
-if (!usePage().props.auth.apple_user) {
+if (!usePage().props.auth.apple_user){
     menu = [
         {
             icon: Settings,
@@ -121,7 +108,7 @@ const toggleSideNav = () => {
             <div class="flex items-center justify-between max-nav w-full gap-1 lg:gap-[77px]">
                 <Logo/>
                 <div class="flex items-center justify-end w-full gap-1 lg:gap-6">
-                    <NavLink v-for="(link, index) in NavLinks" :key="index" :link="link" v-show="link.show"/>
+                    <NavLink v-for="(link, index) in NavLinks" :key="index" :link="link"/>
                 </div>
             </div>
 
@@ -180,7 +167,7 @@ const toggleSideNav = () => {
                         </template>
 
                         <v-list class="px-2 border min-w-[170px] rounded-lg mt-6">
-                            <div v-for="(link, key) in menu" :key>
+                            <div  v-for="(link, key) in menu" :key>
 
                                 <Link v-if="link.outside === false" :href="link.url" :method="link.method">
                                     <v-list-item

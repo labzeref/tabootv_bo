@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Models\DeviceToken;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,8 +21,6 @@ class ApiLoginController extends Controller
         $request->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'device_token' => ['nullable', 'string'],
-
         ]);
         $request->merge([
             'email' => strtolower($request->email),
@@ -43,15 +40,6 @@ class ApiLoginController extends Controller
                 'email' => 'Invalid password.',
             ]);
         }
-
-        if ($request->device_token) {
-            // Reassign or create the device token
-            DeviceToken::updateOrCreate(
-                ['value' => $request->device_token], // Match on device token
-                ['user_id' => $user->id] // Assign or reassign to the current user
-            );
-        }
-
 
         $response = [
             'user' => new UserResource($user),
@@ -117,12 +105,6 @@ class ApiLoginController extends Controller
 
     public function destroy(Request $request)
     {
-        $user = auth()->user();
-
-        // Remove the device token
-        if ($request->device_token) {
-            $user->deviceTokens()->where('value', $request->device_token)->delete();
-        }
         $request->user()->currentAccessToken()->delete();
 
         return $this->sendResponse([], 'User Log Out Successfully');
